@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Từ điển Tò he - Gìn giữ hồn quê qua từng nét nặn</title>
+  <meta name="description" content="Tra cứu từ điển thuật ngữ nghệ thuật nặn tò he truyền thống làng Xuân La. Khám phá các kỹ thuật nặn, nguyên liệu thảo mộc, con giống dân gian và dụng cụ gia truyền.">
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Comfortaa & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Sedgwick+Ave&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="light">
+
+  <!-- TOP HEADER -->
+  <header class="top-header" id="top-header">
+    <div class="header-container">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-identity" id="header-logo-link">
+        <div class="logo-icon-wrap">
+          <svg class="logo-icon-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 32H32L30 16H10L8 32Z" fill="#A83222"/>
+            <path d="M12 16C12 11.5817 15.5817 8 20 8C24.4183 8 28 11.5817 28 16H12Z" fill="#E86147"/>
+            <path d="M16 8C16 5.79086 17.7909 4 20 4C22.2091 4 24 5.79086 24 8H16Z" fill="#F4A261"/>
+            <circle cx="20" cy="22" r="3" fill="#FFE3D1"/>
+            <path d="M6 32H34V35C34 35.5523 33.5523 36 33 36H7C6.44772 36 6 35.5523 6 35V32Z" fill="#752115"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">Từ điển Tò he</div>
+          <div class="brand-slogan">Gìn giữ hồn quê qua từng nét nặn</div>
+        </div>
+      </a>
+
+      <!-- Horizontal Menu Navigation -->
+      <nav class="header-nav" aria-label="Điều hướng chính">
+        <ul class="nav-links">
+          <li>
+            <button class="nav-item-btn active" id="nav-btn-home" data-target="home">
+              <span class="nav-icon">⌂</span> Trang chủ
+            </button>
+          </li>
+          <li>
+            <button class="nav-item-btn" id="nav-btn-dictionary" data-target="dictionary">
+              Từ điển
+            </button>
+          </li>
+          <li>
+            <button class="nav-item-btn" id="nav-btn-categories" data-target="categories">
+              Danh mục
+            </button>
+          </li>
+          <li>
+            <button class="nav-item-btn" id="nav-btn-about" data-target="about">
+              Về chúng tôi
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Action Utilities -->
+      <div class="header-actions">
+        <button class="action-btn icon-search-btn" id="header-search-trigger" title="Tìm kiếm nhanh" aria-label="Tìm kiếm">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+        <button class="action-btn theme-toggle-btn" id="theme-toggle" title="Chuyển chế độ Sáng / Tối" aria-label="Đổi giao diện">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN APP WRAPPER -->
+  <div class="app-container">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar-left" id="sidebar-left">
+      <nav class="sidebar-menu" aria-label="Menu bên trái">
+        <button class="sidebar-link active" id="side-link-home" data-target="home">
+          <span class="icon">⌂</span>
+          <span class="text">Trang chủ</span>
+        </button>
+
+        <button class="sidebar-link" id="side-link-dict" data-target="dictionary">
+          <span class="icon">🔍</span>
+          <span class="text">Từ điển</span>
+        </button>
+
+        <div class="sidebar-group" id="category-accordion">
+          <button class="sidebar-link group-toggle" id="side-link-cat" aria-expanded="true">
+            <span class="icon">📁</span>
+            <span class="text">Danh mục</span>
+            <span class="chevron">›</span>
+          </button>
+          
+          <div class="sidebar-sublinks" id="sidebar-sublinks">
+            <button class="sublink" data-cat="ky_thuat_nan" id="sub-cat-kythuat">
+              <span class="cat-dot cat-dot-orange"></span> Kỹ thuật nặn
+            </button>
+            <button class="sublink" data-cat="nguyen_lieu" id="sub-cat-nguyenlieu">
+              <span class="cat-dot cat-dot-green"></span> Nguyên liệu
+            </button>
+            <button class="sublink" data-cat="san_pham" id="sub-cat-sanpham">
+              <span class="cat-dot cat-dot-blue"></span> Sản phẩm
+            </button>
+            <button class="sublink" data-cat="dung_cu" id="sub-cat-dungcu">
+              <span class="cat-dot cat-dot-purple"></span> Dụng cụ
+            </button>
+          </div>
+        </div>
+
+        <button class="sidebar-link" id="side-link-about" data-target="about">
+          <span class="icon">📖</span>
+          <span class="text">Về chúng tôi</span>
+        </button>
+      </nav>
+
+      <!-- ARTISAN LINE ART ILLUSTRATION -->
+      <div class="sidebar-artisan-box">
+        <div class="artisan-img-wrap">
+          <img src="assets/artisan_sketch.jpg" alt="Nghệ nhân nặn tò he dân gian" class="artisan-sketch-img" loading="lazy">
+        </div>
+        <p class="artisan-quote">
+          <span class="highlight">Tò he</span> - Nét đẹp dân gian Việt
+        </p>
+      </div>
+    </aside>
+
+    <!-- CENTER MAIN CONTENT -->
+    <main class="main-content" id="main-content">
+
+      <!-- HERO BANNER -->
+      <section class="hero-section" id="hero-section">
+        <div class="hero-left-col">
+          <div class="hero-eyebrow">Từ điển</div>
+          <h1 class="hero-title">Tò he</h1>
+          <p class="hero-desc">
+            Khám phá những thuật ngữ độc đáo, đậm chất làng nghề trong nghệ thuật làm tò he truyền thống.
+          </p>
+
+          <!-- HERO SEARCH BAR -->
+          <div class="hero-search-bar" role="search">
+            <div class="search-input-wrapper">
+              <span class="search-icon">🔍</span>
+              <input 
+                type="text" 
+                id="search-input" 
+                placeholder="Nhập từ khóa cần tìm (vd: gà trống, que tre, ve tròn...)" 
+                autocomplete="off"
+                aria-label="Nhập từ khóa cần tìm"
+              >
+              <button class="clear-search-btn" id="clear-search-btn" title="Xóa tìm kiếm" style="display:none;">✕</button>
+            </div>
+            <button class="search-submit-btn" id="search-btn">Tìm kiếm</button>
+          </div>
+
+          <!-- Quick search suggestions -->
+          <div class="quick-tags" id="quick-tags">
+            <span class="tag-label">Gợi ý:</span>
+            <button class="quick-tag-chip" data-search="Gà trống">Gà trống</button>
+            <button class="quick-tag-chip" data-search="Rồng bay">Rồng bay</button>
+            <button class="quick-tag-chip" data-search="Que tre">Que tre</button>
+            <button class="quick-tag-chip" data-search="Bột gạo nếp">Bột nếp</button>
+          </div>
+        </div>
+
+        <div class="hero-right-col">
+          <div class="hero-banner-image-container">
+            <img src="assets/hero_banner.jpg" alt="Các con tò he truyền thống sắc màu" class="hero-banner-img">
+            <div class="hero-badge-overlay">
+              <div class="sparkles-icon">✨</div>
+              <div class="slogan-handwritten">
+                "Những điều nhỏ bé<br>làm nên văn hóa lớn"
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CATEGORY PREVIEW SECTION -->
+      <section class="categories-section" id="categories-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-title-icon">🏵️</span>
+            <h2 class="section-title">Danh mục thuật ngữ</h2>
+          </div>
+          <button class="view-all-cats-btn" id="view-all-terms-btn">Xem tất cả từ điển →</button>
+        </div>
+
+        <div class="categories-grid" id="categories-grid">
+          <!-- Rendered via JS -->
+        </div>
+
+        <!-- 8 CHUYÊN MỤC ĐIỀN DÃ XUÂN LA -->
+        <div class="fieldwork-topics-bar" id="fieldwork-topics-bar">
+          <div class="fieldwork-badge-title">
+            <span class="fieldwork-icon">🌾</span>
+            <span>Khảo cứu thực địa (177 thuật ngữ điền dã):</span>
+          </div>
+          <div class="subcategories-chips" id="subcategories-chips">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ACTIVE SEARCH / FILTER BAR NOTICE -->
+      <div class="filter-status-banner" id="filter-status-banner" style="display: none;">
+        <span class="filter-text" id="filter-status-text">Đang lọc theo danh mục: ...</span>
+        <button class="reset-filter-btn" id="reset-filter-btn">✕ Đặt lại bộ lọc</button>
+      </div>
+
+      <!-- DETAIL VIEW SECTION (Như trong ảnh mẫu) -->
+      <section class="term-detail-section" id="term-detail-section">
+        <div class="back-link-wrapper">
+          <button class="back-link-btn" id="back-to-list-btn">
+            ← Quay lại danh sách
+          </button>
+        </div>
+
+        <article class="term-detail-card" id="term-detail-card">
+          <!-- Left: Big Term Image -->
+          <div class="detail-image-box">
+            <img id="detail-term-image" src="assets/detail_ga_trong.jpg" alt="Con giống Gà trống tò he" class="detail-term-img">
+            <div class="detail-image-zoom-hint">🔍 Nhấp xem ảnh lớn</div>
+          </div>
+
+          <!-- Right: Detailed Information -->
+          <div class="detail-info-box">
+            <div class="detail-top-row">
+              <div class="badges-group">
+                <span class="category-pill-badge" id="detail-category-badge">Kỹ thuật nặn</span>
+                <span class="detail-section-badge" id="detail-section-badge">VIII. Sản phẩm và hình tượng</span>
+              </div>
+              <button class="audio-pronounce-btn" id="audio-pronounce-btn" title="Phát âm tiếng Việt" aria-label="Nghe phát âm">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                </svg>
+                <span class="audio-waves" id="audio-waves">
+                  <span></span><span></span><span></span>
+                </span>
+              </button>
+            </div>
+
+            <h3 class="detail-term-title" id="detail-term-title">Gà trống</h3>
+            <div class="detail-ipa" id="detail-term-ipa">/gà trống/</div>
+
+            <div class="detail-definition-content" id="detail-term-definition">
+              Là một trong những hình tượng phổ biến trong tò he, thường được nặn từ khối bột màu, tạo hình với các chi tiết như mào, đuôi, cánh, chân... Gà trống tượng trưng cho sự mạnh mẽ, may mắn và thường xuất hiện trong các dịp lễ, Tết.
+            </div>
+
+            <div class="detail-technique-note" id="detail-technique-note">
+              <strong>Kỹ thuật tiêu biểu:</strong> <span>Tạo hình từ khối bột màu, kỹ thuật ấn mào, khía lông cánh bằng lược và uốn cong lông đuôi.</span>
+            </div>
+
+            <!-- Related tags -->
+            <div class="detail-related-section">
+              <div class="related-label">
+                <span class="link-icon">🔗</span> Liên quan:
+              </div>
+              <div class="related-tags-container" id="detail-related-tags">
+                <button class="related-tag-chip" data-id="ve-tron">ve tròn</button>
+                <button class="related-tag-chip" data-id="an-dep">ấn nhẹ</button>
+                <button class="related-tag-chip" data-id="ve-dai">ve dài</button>
+                <button class="related-tag-chip" data-id="mau-tu-nhien">màu sắc</button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- RESULTS LIST GRID VIEW (Khi click danh mục / tìm kiếm) -->
+      <section class="results-list-section" id="results-list-section" style="display: none;">
+        <div class="results-header">
+          <h3 class="results-heading" id="results-heading">Danh sách thuật ngữ</h3>
+          <span class="results-count" id="results-count">0 kết quả</span>
+        </div>
+        <div class="terms-grid" id="terms-grid">
+          <!-- Rendered via JS -->
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT SIDEBAR (Tiện ích & Tra cứu) -->
+    <aside class="sidebar-right" id="sidebar-right">
+      
+      <!-- WIDGET 1: Tra cứu theo chữ cái -->
+      <div class="widget-box widget-alphabet">
+        <div class="widget-header">
+          <span class="widget-icon">🔤</span>
+          <h3 class="widget-title">Tra cứu theo chữ cái</h3>
+        </div>
+        <div class="alphabet-matrix" id="alphabet-matrix">
+          <!-- Rendered via JS 7x4 letters -->
+        </div>
+      </div>
+
+      <!-- WIDGET 2: Các thuật ngữ liên quan -->
+      <div class="widget-box widget-related">
+        <div class="widget-header">
+          <span class="widget-icon">🔗</span>
+          <h3 class="widget-title">Các thuật ngữ liên quan</h3>
+        </div>
+        <ul class="related-terms-list" id="sidebar-related-list">
+          <!-- Rendered via JS based on active word -->
+        </ul>
+      </div>
+
+      <!-- WIDGET 3: Trích dẫn văn hóa -->
+      <div class="widget-box widget-quote">
+        <div class="quote-mark">“</div>
+        <blockquote class="quote-text">
+          Tò he không chỉ là một món đồ chơi, mà còn là ký ức, là văn hóa, là hồn quê Việt Nam.
+        </blockquote>
+        <div class="quote-decor">
+          <svg width="40" height="24" viewBox="0 0 60 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 30C15 20 25 15 30 15C35 15 45 20 50 30" stroke="#C24A35" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="30" cy="12" r="4" fill="#C24A35"/>
+            <circle cx="15" cy="20" r="3" fill="#E86147"/>
+            <circle cx="45" cy="20" r="3" fill="#E86147"/>
+          </svg>
+        </div>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <!-- ABOUT US / LÀNG NGHỀ MODAL -->
+  <div class="modal-backdrop" id="about-modal" style="display: none;">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" id="modal-close-btn">✕</button>
+      <div class="modal-header">
+        <span class="modal-badge">Di sản văn hóa phi vật thể</span>
+        <h2 class="modal-title">Nghệ thuật Tò he làng Xuân La</h2>
+      </div>
+      <div class="modal-body">
+        <p><strong>Làng Xuân La</strong> (xã Phượng Dực, huyện Phú Xuyên, Hà Nội) là làng nghề nặn tò he duy nhất tại Việt Nam với lịch sử hơn 300 năm hình thành và phát triển.</p>
+        <p>Tò he thuở sơ khai được gọi là <em>"con bánh chim cò"</em>, là những sản phẩm làm bằng bột gạo nếp thơm ngon, nặn thành hình các con vật gần gũi như chim, cò, gà, trâu... để dâng cúng thần hoàng và các dịp lễ hội.</p>
+        <p>Về sau, các nghệ nhân gắn thêm một chiếc còi nhỏ bằng nứa ở cuống que, khi thổi phát ra âm thanh <em>"tò te he"</em> vui tai. Từ đó, cái tên <strong>Tò he</strong> thân thương ra đời và in sâu vào tâm thức của bao thế hệ trẻ em Việt Nam.</p>
+        <div class="modal-stats">
+          <div class="stat-card">
+            <span class="stat-num">300+</span>
+            <span class="stat-text">Năm lịch sử</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">100%</span>
+            <span class="stat-text">Nguyên liệu tự nhiên</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">3000+</span>
+            <span class="stat-text">Nghệ nhân toàn quốc</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="primary-btn" id="modal-explore-btn">Khám phá từ điển ngay</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- IMAGE LIGHTBOX MODAL -->
+  <div class="lightbox-modal" id="lightbox-modal" style="display: none;">
+    <button class="lightbox-close" id="lightbox-close">✕</button>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="Phóng to ảnh tò he">
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <p>© 2026 <strong>Từ điển Tò he Việt Nam</strong> - Tôn vinh nét đẹp văn hóa dân gian làng nghề Xuân La.</p>
+      <p class="footer-sub">Thiết kế bởi Antigravity với tình yêu văn hóa truyền thống Việt Nam.</p>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
