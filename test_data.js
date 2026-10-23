@@ -96,6 +96,24 @@ if (missingCount === 0) {
   errors += missingCount;
 }
 
+// 5b. Bilingual & Multimedia Schema Validation (ipaVi, enTerm, enIpa, enDefinition, image, videoUrl)
+const bilingualFields = ['ipaVi', 'enTerm', 'enIpa', 'enDefinition', 'image', 'videoUrl'];
+let missingBilingual = 0;
+TOHE_DATA.forEach(t => {
+  bilingualFields.forEach(f => {
+    if (!t[f] || typeof t[f] !== 'string' || t[f].trim() === '') {
+      missingBilingual++;
+    }
+  });
+});
+console.log(`[5] Kiểm tra Song ngữ & Đa phương tiện (Bilingual & Media Audit):`);
+if (missingBilingual === 0) {
+  console.log(" ✅ ĐẠT: 100% (177/177) thực thể có đầy đủ: Phiên âm tiếng Việt, Dịch tiếng Anh, Phiên âm tiếng Anh, Giải nghĩa tiếng Anh, Hình ảnh và Video.\n");
+} else {
+  console.error(` ❌ LỖI: Có ${missingBilingual} trường song ngữ/media bị thiếu.`);
+  errors += missingBilingual;
+}
+
 // 6. Semantic Graph (Đồ thị ngữ nghĩa - Broken links)
 const allTerms = new Set(TOHE_DATA.map(t => t.term.toLowerCase().trim()));
 let brokenCount = 0;

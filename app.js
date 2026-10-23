@@ -1,9 +1,63 @@
 /**
  * ỨNG DỤNG TỪ ĐIỂN TÒ HE - LOGIC ĐIỀU KHIỂN & TƯƠNG TÁC
  * Ngôn ngữ: JavaScript ES6+
+ * Thiết kế phòng thủ (Defensive Programming Standards)
  */
 
+// --- 0. TIỆN ÍCH PHÒNG THỦ & CHUẨN HÓA DỮ LIỆU ---
+if (typeof window !== "undefined") {
+  window.__currentUtterance = null;
+}
+
+/**
+ * Thoát ký tự đặc biệt chống vỡ layout và XSS Injection
+ * @param {any} str 
+ * @returns {string} Chuỗi an toàn
+ */
+function escapeHTML(str) {
+  if (str === null || str === undefined) return "";
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+/**
+ * Chuẩn hóa triệt để chuỗi ký tự theo tiêu chuẩn phòng thủ (Defensive Unicode Normalization)
+ * - Null-safety: trả về "" nếu input không phải string.
+ * - Ép chuẩn Unicode dựng sẵn: str.normalize('NFC').
+ * - Chuyển chữ thường, cắt bỏ khoảng trắng thừa (.trim().toLowerCase().replace(/\s+/g, ' ')).
+ * - Xử lý độc lập cả hai tầng so khớp: tầng có dấu chuẩn và tầng bóc tách dấu (loại bỏ \u0300-\u036f, đ/Đ -> d).
+ * @param {any} input 
+ * @param {boolean} foldAccents 
+ * @returns {string} Chuỗi đã chuẩn hóa an toàn
+ */
+function normalizeString(input, foldAccents = false) {
+  if (typeof input !== "string" || !input) return "";
+  let norm = input.normalize("NFC").toLowerCase().replace(/\s+/g, " ").trim();
+  if (foldAccents) {
+    norm = norm
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/đ/g, "d")
+      .replace(/Đ/g, "d")
+      .normalize("NFC");
+  }
+  return norm;
+}
+
+function normalizeVietnamese(input) {
+  return normalizeString(input, true);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  // Đóng băng bất biến dữ liệu tại runtime nếu chưa được đóng băng
+  if (typeof deepFreeze === "function" && typeof TOHE_DICTIONARY_DATA !== "undefined" && !Object.isFrozen(TOHE_DICTIONARY_DATA)) {
+    deepFreeze(TOHE_DICTIONARY_DATA);
+  }
+
   // --- TRẠNG THÁI ỨNG DỤNG (STATE) ---
   const state = {
     theme: localStorage.getItem("tohe_theme") || "light",
@@ -44,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const detailImage = document.getElementById("detail-term-image");
   const detailCategoryBadge = document.getElementById("detail-category-badge");
   const detailSectionBadge = document.getElementById("detail-section-badge");
+  const detailMediaBadge = document.getElementById("detail-media-badge");
   const detailTitle = document.getElementById("detail-term-title");
   const detailIpa = document.getElementById("detail-term-ipa");
   const detailDefinition = document.getElementById("detail-term-definition");
@@ -51,6 +106,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const detailRelatedTags = document.getElementById("detail-related-tags");
   const audioPronounceBtn = document.getElementById("audio-pronounce-btn");
   const audioWaves = document.getElementById("audio-waves");
+
+  // Multimedia & Bilingual refs
+  const tabBtnImage = document.getElementById("tab-btn-image");
+  const tabBtnVideo = document.getElementById("tab-btn-video");
+  const detailImageBox = document.getElementById("detail-image-box");
+  const detailVideoBox = document.getElementById("detail-video-box");
+  const detailVideoFrame = document.getElementById("detail-video-frame");
+  const mediaCaptionText = document.getElementById("media-caption-text");
+  const detailEnBox = document.getElementById("detail-en-box");
+  const detailEnTermTitle = document.getElementById("detail-en-term-title");
+  const detailEnIpa = document.getElementById("detail-en-ipa");
+  const detailEnDefinitionText = document.getElementById("detail-en-definition-text");
+  const detailEnDefinitionCard = document.getElementById("detail-en-definition-card");
+  const audioPronounceEnBtn = document.getElementById("audio-pronounce-en-btn");
+  const audioWavesEn = document.getElementById("audio-waves-en");
 
   // Sidebar refs
   const sidebarRelatedList = document.getElementById("sidebar-related-list");
@@ -91,23 +161,23 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderCategories() {
     categoriesGrid.innerHTML = "";
     CATEGORIES_METADATA.forEach((cat) => {
-      // Đếm số từ thực tế trong data
+      // Đếm số từ thực tế trong data (pure reference count)
       const actualCount = TOHE_DICTIONARY_DATA.filter(item => item.category === cat.id).length;
       const countLabel = `(${actualCount || cat.countText.replace(/\D/g, '')} từ)`;
 
       const card = document.createElement("div");
-      card.className = `category-card ${cat.bgClass} ${state.activeCategory === cat.id ? "active" : ""}`;
+      card.className = `category-card ${escapeHTML(cat.bgClass)} ${state.activeCategory === cat.id ? "active" : ""}`;
       card.setAttribute("data-category-id", cat.id);
       card.innerHTML = `
         <div class="cat-thumb-box">
-          <img src="${cat.image}" alt="${cat.title}" class="cat-thumb-img" loading="lazy">
+          <img src="${escapeHTML(cat.image)}" alt="${escapeHTML(cat.title)}" class="cat-thumb-img" loading="lazy">
         </div>
         <div class="cat-bottom-row">
           <div class="cat-info">
-            <span class="cat-title">${cat.title}</span>
-            <span class="cat-count">${countLabel}</span>
+            <span class="cat-title">${escapeHTML(cat.title)}</span>
+            <span class="cat-count">${escapeHTML(countLabel)}</span>
           </div>
-          <button class="cat-arrow-btn" aria-label="Xem danh mục ${cat.title}">→</button>
+          <button class="cat-arrow-btn" aria-label="Xem danh mục ${escapeHTML(cat.title)}">→</button>
         </div>
       `;
 
@@ -138,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const count = TOHE_DICTIONARY_DATA.filter(item => item.subCategory === sub.id).length;
       const btn = document.createElement("button");
       btn.className = `subcat-chip ${state.activeSubCategory === sub.id ? "active" : ""}`;
-      btn.innerHTML = `<span>${sub.title}</span> <span class="count">${count}</span>`;
+      btn.innerHTML = `<span>${escapeHTML(sub.title)}</span> <span class="count">${count}</span>`;
       btn.addEventListener("click", () => {
         handleSubCategorySelect(sub.id);
       });
@@ -184,17 +254,78 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- 4. RENDER CHI TIẾT THUẬT NGỮ (DETAIL VIEW) ---
+  // --- MEDIA TAB SWITCHER (Ảnh & Video) ---
+  function switchMediaTab(tab) {
+    const term = TOHE_DICTIONARY_DATA.find(item => item.id === state.selectedTermId);
+    if (!term) return;
+
+    if (tab === "video") {
+      if (tabBtnVideo) {
+        tabBtnVideo.classList.add("active");
+        tabBtnVideo.setAttribute("aria-selected", "true");
+      }
+      if (tabBtnImage) {
+        tabBtnImage.classList.remove("active");
+        tabBtnImage.setAttribute("aria-selected", "false");
+      }
+      if (detailImageBox) detailImageBox.style.display = "none";
+      if (detailVideoBox) detailVideoBox.style.display = "block";
+
+      if (detailVideoFrame && term.videoUrl) {
+        if (!detailVideoFrame.src || detailVideoFrame.src === "about:blank" || !detailVideoFrame.src.includes(term.videoUrl.split('?')[0])) {
+          detailVideoFrame.src = term.videoUrl;
+        }
+      }
+    } else {
+      if (tabBtnImage) {
+        tabBtnImage.classList.add("active");
+        tabBtnImage.setAttribute("aria-selected", "true");
+      }
+      if (tabBtnVideo) {
+        tabBtnVideo.classList.remove("active");
+        tabBtnVideo.setAttribute("aria-selected", "false");
+      }
+      if (detailImageBox) detailImageBox.style.display = "block";
+      if (detailVideoBox) detailVideoBox.style.display = "none";
+      if (detailVideoFrame) detailVideoFrame.src = "";
+    }
+  }
+
+  if (tabBtnImage) tabBtnImage.addEventListener("click", () => switchMediaTab("image"));
+  if (tabBtnVideo) tabBtnVideo.addEventListener("click", () => switchMediaTab("video"));
+
+  // --- 4. RENDER CHI TIẾT THUẬT NGỮ (BILINGUAL DETAIL VIEW) ---
   function renderTermDetail(termId) {
     const term = TOHE_DICTIONARY_DATA.find(item => item.id === termId) || TOHE_DICTIONARY_DATA[0];
     state.selectedTermId = term.id;
 
+    // 1. Tiếng Việt: Thuật ngữ, phiên âm & giải nghĩa
     detailTitle.textContent = term.term;
-    detailIpa.textContent = term.ipa;
+    detailIpa.textContent = term.ipaVi || term.ipa;
     detailDefinition.textContent = term.definition;
     detailCategoryBadge.textContent = term.categoryLabel;
+
+    // 2. Tiếng Anh: Dịch thuật ngữ, phiên âm tiếng Anh & giải nghĩa tiếng Anh
+    if (detailEnTermTitle) {
+      detailEnTermTitle.textContent = term.enTerm || term.term;
+    }
+    if (detailEnIpa) {
+      detailEnIpa.textContent = term.enIpa || "";
+    }
+    if (detailEnDefinitionText) {
+      detailEnDefinitionText.textContent = term.enDefinition || term.definition;
+    }
+
+    // 3. Đa phương tiện: Hình ảnh & Video nghệ nhân
     detailImage.src = term.image;
-    detailImage.alt = term.term;
+    detailImage.alt = `${term.term} (${term.enTerm || ''}) - Nghệ thuật Tò he Xuân La`;
+
+    if (mediaCaptionText) {
+      mediaCaptionText.textContent = `Tư liệu điền dã: ${term.term} — ${term.enTerm || ''} (Xuân La, Phú Xuyên)`;
+    }
+
+    // Reset về tab ảnh khi chuyển mục từ
+    switchMediaTab("image");
 
     if (detailSectionBadge) {
       if (term.sectionTitle) {
@@ -251,7 +382,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Zoom ảnh lightbox
     detailImage.onclick = () => {
-      openLightbox(term.image, `${term.term} - Nghệ thuật Tò he truyền thống`);
+      openLightbox(term.image, `${term.term} (${term.enTerm || ''}) - Nghệ thuật Tò he truyền thống`);
     };
   }
 
@@ -281,7 +412,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const li = document.createElement("li");
       li.className = "related-term-item";
       li.innerHTML = `
-        <span>${item.term}</span>
+        <span>${escapeHTML(item.term)}</span>
         <span class="arrow">›</span>
       `;
       li.addEventListener("click", () => {
@@ -290,19 +421,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       sidebarRelatedList.appendChild(li);
     });
-  }
-
-  // --- HÀM TIỆN ÍCH: CHUẨN HÓA TIẾNG VIỆT & BỎ DẤU (ACCENT-FOLDING) ---
-  function normalizeVietnamese(str) {
-    if (!str) return "";
-    return str
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/đ/g, "d")
-      .replace(/Đ/g, "D")
-      .toLowerCase()
-      .replace(/\s+/g, " ")
-      .trim();
   }
 
   // --- HÀM THÔNG BÁO TOAST THÂN THIỆN ---
@@ -315,8 +433,8 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.appendChild(toastContainer);
     }
     const toast = document.createElement("div");
-    toast.className = `toast-message toast-${type}`;
-    toast.textContent = message;
+    toast.className = `toast-message toast-${escapeHTML(type)}`;
+    toast.textContent = String(message || "");
     toastContainer.appendChild(toast);
     setTimeout(() => {
       toast.classList.add("fade-out");
@@ -324,7 +442,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 3200);
   }
 
-  // --- 6. PHÁT ÂM TIẾNG VIỆT (WEB SPEECH SYNTHESIS API) ---
+  // --- 6. PHÁT ÂM TIẾNG VIỆT & TIẾNG ANH (DEFENSIVE WEB SPEECH SYNTHESIS API) ---
   audioPronounceBtn.addEventListener("click", () => {
     const term = TOHE_DICTIONARY_DATA.find(item => item.id === state.selectedTermId);
     if (!term) return;
@@ -335,9 +453,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      window.speechSynthesis.cancel(); // Dừng câu trước nếu có
+      // Trước khi phát âm: luôn gọi window.speechSynthesis.cancel() để dọn sạch hàng đợi
+      window.speechSynthesis.cancel();
+      window.__currentUtterance = null;
 
       const utterance = new SpeechSynthesisUtterance(term.term);
+      window.__currentUtterance = utterance;
       utterance.lang = "vi-VN";
       utterance.rate = 0.9;
       utterance.pitch = 1.0;
@@ -345,25 +466,76 @@ document.addEventListener("DOMContentLoaded", () => {
       // Hiệu ứng sóng âm thanh
       audioWaves.classList.add("active");
 
-      utterance.onend = () => {
+      const cleanupSpeech = () => {
+        window.__currentUtterance = null;
         audioWaves.classList.remove("active");
       };
 
+      utterance.onend = cleanupSpeech;
+
       utterance.onerror = (e) => {
-        audioWaves.classList.remove("active");
-        showToast("Không thể phát âm thanh: " + (e.error || "quyền truy cập bị từ chối"), "warning");
+        cleanupSpeech();
+        // Fallback nhẹ nhàng qua Toast UI, tuyệt đối không quăng unhandled exception
+        showToast("Không thể phát âm thanh tiếng Việt: " + (e.error || "quyền truy cập bị từ chối"), "warning");
       };
 
       window.speechSynthesis.speak(utterance);
     } catch (err) {
+      window.__currentUtterance = null;
       audioWaves.classList.remove("active");
       showToast("Lỗi âm thanh: " + err.message, "warning");
     }
   });
 
-  // --- 7. TÌM KIẾM & BỘ LỌC THUẬT NGỮ (MULTI-FACET INTERSECTION) ---
+  // PHÁT ÂM TIẾNG ANH (ENGLISH PRONUNCIATION)
+  if (audioPronounceEnBtn) {
+    audioPronounceEnBtn.addEventListener("click", () => {
+      const term = TOHE_DICTIONARY_DATA.find(item => item.id === state.selectedTermId);
+      if (!term) return;
+      const textToSpeak = term.enTerm || term.term;
+
+      if (!("speechSynthesis" in window)) {
+        showToast("Trình duyệt không hỗ trợ Web Speech API. Từ tiếng Anh: " + textToSpeak, "warning");
+        return;
+      }
+
+      try {
+        window.speechSynthesis.cancel();
+        window.__currentUtterance = null;
+
+        const utterance = new SpeechSynthesisUtterance(textToSpeak);
+        window.__currentUtterance = utterance;
+        utterance.lang = "en-US";
+        utterance.rate = 0.9;
+        utterance.pitch = 1.0;
+
+        if (audioWavesEn) audioWavesEn.classList.add("active");
+
+        const cleanupSpeechEn = () => {
+          window.__currentUtterance = null;
+          if (audioWavesEn) audioWavesEn.classList.remove("active");
+        };
+
+        utterance.onend = cleanupSpeechEn;
+
+        utterance.onerror = (e) => {
+          cleanupSpeechEn();
+          showToast("Không thể phát âm tiếng Anh: " + (e.error || "quyền truy cập bị từ chối"), "warning");
+        };
+
+        window.speechSynthesis.speak(utterance);
+      } catch (err) {
+        window.__currentUtterance = null;
+        if (audioWavesEn) audioWavesEn.classList.remove("active");
+        showToast("Lỗi âm thanh tiếng Anh: " + err.message, "warning");
+      }
+    });
+  }
+
+  // --- 7. TÌM KIẾM & BỘ LỌC THUẬT NGỮ (MULTI-FACET INTERSECTION - PURE FUNCTION) ---
   function getFilteredTerms() {
-    return TOHE_DICTIONARY_DATA.filter(item => {
+    // Luôn trả về mảng tham chiếu mới, bảo toàn bất biến tuyệt đối của TOHE_DICTIONARY_DATA
+    return [...TOHE_DICTIONARY_DATA].filter(item => {
       // 0. Lọc theo chuyên đề điền dã (subCategory)
       if (state.activeSubCategory && item.subCategory !== state.activeSubCategory) {
         return false;
@@ -372,25 +544,26 @@ document.addEventListener("DOMContentLoaded", () => {
       if (state.activeCategory && item.category !== state.activeCategory) {
         return false;
       }
-      // 2. Lọc theo chữ cái (hỗ trợ cả có dấu và không dấu)
+      // 2. Lọc theo chữ cái (hỗ trợ cả có dấu và không dấu qua normalizeString)
       if (state.activeLetter) {
-        const targetLetter = state.activeLetter.toUpperCase();
-        const firstLetterAscii = normalizeVietnamese(item.term.trim()[0] || "").toUpperCase();
-        const matchesLetter = item.letter.toUpperCase() === targetLetter || firstLetterAscii === targetLetter;
+        const targetLetter = normalizeString(state.activeLetter, true).toUpperCase();
+        const firstLetter = normalizeString(item.term.trim()[0] || "", true).toUpperCase();
+        const itemLetter = normalizeString(item.letter || "", true).toUpperCase();
+        const matchesLetter = itemLetter === targetLetter || firstLetter === targetLetter;
         if (!matchesLetter) return false;
       }
-      // 3. Lọc theo từ khóa tìm kiếm (hỗ trợ không dấu, có dấu, normalize khoảng trắng)
-      if (state.searchQuery.trim()) {
+      // 3. Lọc theo từ khóa tìm kiếm (so khớp độc lập 2 tầng: tầng có dấu NFC & tầng bóc tách dấu NFD)
+      if (state.searchQuery && state.searchQuery.trim()) {
         const rawQ = state.searchQuery.trim();
-        const qLower = rawQ.toLowerCase().replace(/\s+/g, " ");
-        const qFolded = normalizeVietnamese(rawQ);
+        const qNfc = normalizeString(rawQ, false);
+        const qFolded = normalizeString(rawQ, true);
 
         const matchField = (val) => {
           if (!val) return false;
           if (typeof val === "string") {
-            const vLower = val.toLowerCase();
-            if (vLower.includes(qLower)) return true;
-            const vFolded = normalizeVietnamese(val);
+            const vNfc = normalizeString(val, false);
+            if (vNfc.includes(qNfc)) return true;
+            const vFolded = normalizeString(val, true);
             return vFolded.includes(qFolded);
           }
           if (Array.isArray(val)) {
@@ -400,13 +573,19 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         const inTerm = matchField(item.term);
+        const inEnTerm = matchField(item.enTerm);
         const inDef = matchField(item.definition);
+        const inEnDef = matchField(item.enDefinition);
+        const inIpaVi = matchField(item.ipaVi);
+        const inEnIpa = matchField(item.enIpa);
         const inCat = matchField(item.categoryLabel);
         const inSec = matchField(item.sectionTitle);
         const inTags = matchField(item.tags);
         const inRelated = matchField(item.related);
 
-        if (!inTerm && !inDef && !inCat && !inSec && !inTags && !inRelated) return false;
+        if (!inTerm && !inEnTerm && !inDef && !inEnDef && !inIpaVi && !inEnIpa && !inCat && !inSec && !inTags && !inRelated) {
+          return false;
+        }
       }
       return true;
     });
@@ -434,14 +613,15 @@ document.addEventListener("DOMContentLoaded", () => {
       card.className = "term-card";
       card.innerHTML = `
         <div class="term-card-thumb">
-          <img src="${term.image}" alt="${term.term}" loading="lazy">
+          <img src="${escapeHTML(term.image)}" alt="${escapeHTML(term.term)}" loading="lazy">
         </div>
-        <span class="term-card-badge ${catMeta ? catMeta.bgClass : ''}">
-          ${term.categoryLabel}
+        <span class="term-card-badge ${catMeta ? escapeHTML(catMeta.bgClass) : ''}">
+          ${escapeHTML(term.categoryLabel)}
         </span>
-        <h4 class="term-card-title">${term.term}</h4>
-        <div class="term-card-ipa">${term.ipa}</div>
-        <p class="term-card-excerpt">${term.definition}</p>
+        <h4 class="term-card-title">${escapeHTML(term.term)}</h4>
+        ${term.enTerm ? `<div class="term-card-en">🇬🇧 ${escapeHTML(term.enTerm)}</div>` : ''}
+        <div class="term-card-ipa">${escapeHTML(term.ipaVi || term.ipa || '')}</div>
+        <p class="term-card-excerpt">${escapeHTML(term.definition)}</p>
       `;
 
       card.addEventListener("click", () => {
@@ -457,17 +637,17 @@ document.addEventListener("DOMContentLoaded", () => {
     let filterTexts = [];
     if (state.activeSubCategory && typeof SUBCATEGORIES_METADATA !== "undefined") {
       const sub = SUBCATEGORIES_METADATA.find(s => s.id === state.activeSubCategory);
-      if (sub) filterTexts.push(`Chuyên đề: "${sub.title}"`);
+      if (sub) filterTexts.push(`Chuyên đề: "${escapeHTML(sub.title)}"`);
     }
     if (state.activeCategory) {
       const cat = CATEGORIES_METADATA.find(c => c.id === state.activeCategory);
-      if (cat) filterTexts.push(`Danh mục: "${cat.title}"`);
+      if (cat) filterTexts.push(`Danh mục: "${escapeHTML(cat.title)}"`);
     }
     if (state.activeLetter) {
-      filterTexts.push(`Bắt đầu bằng chữ cái: "${state.activeLetter}"`);
+      filterTexts.push(`Bắt đầu bằng chữ cái: "${escapeHTML(state.activeLetter)}"`);
     }
-    if (state.searchQuery.trim()) {
-      filterTexts.push(`Từ khóa: "${state.searchQuery.trim()}"`);
+    if (state.searchQuery && state.searchQuery.trim()) {
+      filterTexts.push(`Từ khóa: "${escapeHTML(state.searchQuery.trim())}"`);
     }
 
     if (filterTexts.length > 0) {
@@ -479,6 +659,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function resetAllFilters() {
+    clearTimeout(searchDebounceTimer);
     state.activeCategory = null;
     state.activeSubCategory = null;
     state.activeLetter = null;
@@ -520,17 +701,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-    switchToListAndView(`${CATEGORIES_METADATA.find(c => c.id === catId)?.title || "Danh mục"}`);
-
-    // Update sidebar active sublink
-    sideSublinks.forEach(btn => {
-      if (btn.getAttribute("data-cat") === state.activeCategory) {
-        btn.classList.add("active");
-      } else {
-        btn.classList.remove("active");
-      }
-    });
-  }
 
   function handleAlphabetSelect(letter) {
     if (state.activeLetter === letter) {
@@ -544,29 +714,47 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function performSearch(query) {
-    state.searchQuery = query;
-    searchInput.value = query;
-    clearSearchBtn.style.display = query.trim() ? "block" : "none";
+    state.searchQuery = typeof query === "string" ? query : "";
+    searchInput.value = state.searchQuery;
+    clearSearchBtn.style.display = state.searchQuery.trim() ? "block" : "none";
     updateFilterBanner();
-    switchToListAndView(`Kết quả tìm kiếm cho: "${query}"`);
+    switchToListAndView(`Kết quả tìm kiếm cho: "${state.searchQuery}"`);
   }
 
-  // Sự kiện Search Input & Button
+  // --- XỬ LÝ TÌM KIẾM CHỐNG RACE CONDITION VÀ SPAM PHÍM (INPUT DEBOUNCING) ---
+  let searchDebounceTimer = null;
+
+  function triggerSearch(immediate = false) {
+    clearTimeout(searchDebounceTimer);
+    const query = searchInput.value;
+    clearSearchBtn.style.display = query.length > 0 ? "block" : "none";
+
+    if (immediate) {
+      performSearch(query);
+    } else {
+      searchDebounceTimer = setTimeout(() => {
+        // Luôn đồng bộ với giá trị cuối cùng trong ô input
+        performSearch(searchInput.value);
+      }, 100);
+    }
+  }
+
   searchBtn.addEventListener("click", () => {
-    performSearch(searchInput.value);
+    triggerSearch(true);
   });
 
   searchInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
-      performSearch(searchInput.value);
+      triggerSearch(true);
     }
   });
 
   searchInput.addEventListener("input", () => {
-    clearSearchBtn.style.display = searchInput.value.length > 0 ? "block" : "none";
+    triggerSearch(false);
   });
 
   clearSearchBtn.addEventListener("click", () => {
+    clearTimeout(searchDebounceTimer);
     searchInput.value = "";
     clearSearchBtn.style.display = "none";
     performSearch("");
@@ -715,3 +903,12 @@ document.addEventListener("DOMContentLoaded", () => {
   renderTermDetail(state.selectedTermId);
   switchToDetailView();
 });
+
+// Xuất các hàm thuần túy phục vụ unit test và automation test
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = {
+    normalizeString,
+    normalizeVietnamese,
+    escapeHTML
+  };
+}

@@ -237,42 +237,121 @@
         </div>
 
         <article class="term-detail-card" id="term-detail-card">
-          <!-- Left: Big Term Image -->
-          <div class="detail-image-box">
-            <img id="detail-term-image" src="assets/detail_ga_trong.jpg" alt="Con giống Gà trống tò he" class="detail-term-img">
-            <div class="detail-image-zoom-hint">🔍 Nhấp xem ảnh lớn</div>
+          <!-- Left: Multimedia Showcase (Hình ảnh & Video) -->
+          <div class="detail-media-column">
+            <!-- Media Tab Switcher -->
+            <div class="media-tabs-bar" role="tablist" aria-label="Tùy chọn đa phương tiện">
+              <button class="media-tab-btn active" id="tab-btn-image" role="tab" aria-selected="true" aria-controls="detail-image-box">
+                <span class="tab-icon">🖼️</span>
+                <span>Hình ảnh</span>
+              </button>
+              <button class="media-tab-btn" id="tab-btn-video" role="tab" aria-selected="false" aria-controls="detail-video-box">
+                <span class="tab-icon">🎬</span>
+                <span>Video thao tác</span>
+              </button>
+            </div>
+
+            <!-- 1. Image Container -->
+            <div class="detail-image-box" id="detail-image-box" role="tabpanel">
+              <img id="detail-term-image" src="assets/detail_ga_trong.jpg" alt="Con giống Gà trống tò he" class="detail-term-img">
+              <div class="detail-image-zoom-hint">🔍 Nhấp xem ảnh lớn</div>
+            </div>
+
+            <!-- 2. Video Player Container -->
+            <div class="detail-video-box" id="detail-video-box" role="tabpanel" style="display: none;">
+              <iframe 
+                id="detail-video-frame" 
+                src="" 
+                title="Video thực hành nghệ nhân Tò he Xuân La" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen
+              ></iframe>
+            </div>
+
+            <!-- Media Caption -->
+            <div class="media-caption-bar" id="media-caption-bar">
+              <span class="caption-icon">🌾</span>
+              <span class="caption-text" id="media-caption-text">Tư liệu điền dã làng nghề Tò he Xuân La</span>
+            </div>
           </div>
 
-          <!-- Right: Detailed Information -->
+          <!-- Right: Detailed Information (Song ngữ Việt - Anh) -->
           <div class="detail-info-box">
             <div class="detail-top-row">
               <div class="badges-group">
                 <span class="category-pill-badge" id="detail-category-badge">Kỹ thuật nặn</span>
                 <span class="detail-section-badge" id="detail-section-badge">VIII. Sản phẩm và hình tượng</span>
+                <span class="media-indicator-badge" id="detail-media-badge">📸 🎬 Đa phương tiện</span>
               </div>
-              <button class="audio-pronounce-btn" id="audio-pronounce-btn" title="Phát âm tiếng Việt" aria-label="Nghe phát âm">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                </svg>
-                <span class="audio-waves" id="audio-waves">
-                  <span></span><span></span><span></span>
-                </span>
-              </button>
+
+              <!-- DUAL SPEECH AUDIO BUTTONS (VI & EN) -->
+              <div class="audio-controls-group">
+                <button class="audio-pronounce-btn vi-btn" id="audio-pronounce-btn" title="Nghe phát âm tiếng Việt" aria-label="Phát âm tiếng Việt">
+                  <span class="audio-lang-tag">VI</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                  </svg>
+                  <span class="audio-waves" id="audio-waves">
+                    <span></span><span></span><span></span>
+                  </span>
+                </button>
+                <button class="audio-pronounce-btn en-btn" id="audio-pronounce-en-btn" title="Nghe phát âm tiếng Anh" aria-label="Phát âm tiếng Anh">
+                  <span class="audio-lang-tag">EN</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                  </svg>
+                  <span class="audio-waves audio-waves-en" id="audio-waves-en">
+                    <span></span><span></span><span></span>
+                  </span>
+                </button>
+              </div>
             </div>
 
-            <h3 class="detail-term-title" id="detail-term-title">Gà trống</h3>
-            <div class="detail-ipa" id="detail-term-ipa">/gà trống/</div>
+            <!-- PHẦN TỪ TIẾNG VIỆT & PHIÊN ÂM TIẾNG VIỆT -->
+            <div class="term-title-block vi-block">
+              <div class="lang-label-row">
+                <h3 class="detail-term-title" id="detail-term-title">Gà trống</h3>
+                <span class="detail-ipa detail-ipa-vi" id="detail-term-ipa">/gà trống/</span>
+              </div>
+            </div>
 
+            <!-- PHẦN DỊCH TIẾNG ANH & PHIÊN ÂM TIẾNG ANH -->
+            <div class="term-title-block en-block" id="detail-en-box">
+              <div class="lang-label-row">
+                <div class="en-term-title-wrap">
+                  <span class="lang-pill-badge">EN</span>
+                  <h4 class="detail-en-term-title" id="detail-en-term-title">Rooster Figurine</h4>
+                </div>
+                <span class="detail-ipa detail-ipa-en" id="detail-en-ipa">/ˈruː.stər ˈfɪɡ.jər.iːn/</span>
+              </div>
+            </div>
+
+            <!-- GIẢI NGHĨA TIẾNG VIỆT -->
             <div class="detail-definition-content" id="detail-term-definition">
               Là một trong những hình tượng phổ biến trong tò he, thường được nặn từ khối bột màu, tạo hình với các chi tiết như mào, đuôi, cánh, chân... Gà trống tượng trưng cho sự mạnh mẽ, may mắn và thường xuất hiện trong các dịp lễ, Tết.
             </div>
 
+            <!-- GIẢI NGHĨA DỊCH TIẾNG ANH (ENGLISH DEFINITION) -->
+            <div class="detail-en-definition-card" id="detail-en-definition-card">
+              <div class="en-def-header">
+                <span class="en-icon">🌐</span>
+                <span class="en-def-title">English Meaning & Cultural Context:</span>
+              </div>
+              <div class="en-def-body" id="detail-en-definition-text">
+                A traditional folk rooster toy sculpted on a stick, embodying courage, five cardinal virtues, and good fortune in Vietnamese culture.
+              </div>
+            </div>
+
+            <!-- KỸ THUẬT TIÊU BIỂU -->
             <div class="detail-technique-note" id="detail-technique-note">
               <strong>Kỹ thuật tiêu biểu:</strong> <span>Tạo hình từ khối bột màu, kỹ thuật ấn mào, khía lông cánh bằng lược và uốn cong lông đuôi.</span>
             </div>
 
-            <!-- Related tags -->
+            <!-- CÁC THUẬT NGỮ LIÊN QUAN -->
             <div class="detail-related-section">
               <div class="related-label">
                 <span class="link-icon">🔗</span> Liên quan:

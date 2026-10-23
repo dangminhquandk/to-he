@@ -72,13 +72,19 @@ function filterTerms(options = {}) {
       };
 
       const inTerm = matchField(item.term);
+      const inEnTerm = matchField(item.enTerm);
       const inDef = matchField(item.definition);
+      const inEnDef = matchField(item.enDefinition);
+      const inIpaVi = matchField(item.ipaVi);
+      const inEnIpa = matchField(item.enIpa);
       const inCat = matchField(item.categoryLabel);
       const inSec = matchField(item.sectionTitle);
       const inTags = matchField(item.tags);
       const inRelated = matchField(item.related);
 
-      if (!inTerm && !inDef && !inCat && !inSec && !inTags && !inRelated) return false;
+      if (!inTerm && !inEnTerm && !inDef && !inEnDef && !inIpaVi && !inEnIpa && !inCat && !inSec && !inTags && !inRelated) {
+        return false;
+      }
     }
     return true;
   });
@@ -236,6 +242,26 @@ const SUITE_1 = "1. Data Integrity & Schema Audit";
   );
 }
 
+// Test 1.9: Kiểm thử cấu trúc song ngữ & media (ipaVi, enTerm, enIpa, enDefinition, image, videoUrl)
+{
+  const fields = ['ipaVi', 'enTerm', 'enIpa', 'enDefinition', 'image', 'videoUrl'];
+  let missing = 0;
+  TOHE_DATA.forEach(t => {
+    fields.forEach(f => {
+      if (!t[f] || typeof t[f] !== 'string' || t[f].trim() === '') missing++;
+    });
+  });
+  recordTest(
+    SUITE_1,
+    "TC-DATA-09: Song ngữ & Đa phương tiện (Bilingual IPA, English Term, English IPA, English Definition, Image, Video URL)",
+    "100% 177 thuật ngữ có đủ 6 trường song ngữ và media",
+    0,
+    missing,
+    missing === 0,
+    missing === 0 ? "177/177 thuật ngữ đã sẵn sàng song ngữ & media video" : `Thiếu ${missing} trường dữ liệu`
+  );
+}
+
 // ================================================================================
 // SUITE 2: KIỂM THỬ THUẬT TOÁN & BỘ LỌC ĐA TIÊU CHÍ (LOGIC & SEARCH ALGORITHM)
 // ================================================================================
@@ -343,6 +369,24 @@ const SUITE_2 = "2. Logic & Search Algorithm";
   );
 }
 
+// Test 2.7: Tìm kiếm song ngữ (English Term & Definition Search)
+{
+  const resRooster = filterTerms({ query: "Rooster" });
+  const resGlutinous = filterTerms({ query: "Glutinous" });
+  const resStick = filterTerms({ query: "Bamboo" });
+  const passed = resRooster.some(t => t.id === "ga-trong") &&
+                 resGlutinous.some(t => t.id === "bot-nep");
+  recordTest(
+    SUITE_2,
+    "TC-ALG-07: Tìm kiếm song ngữ (English Search & Bilingual Matching)",
+    "Tìm kiếm từ khóa tiếng Anh trả về kết quả chuẩn xác",
+    "true",
+    String(passed),
+    passed,
+    `Tìm 'Rooster' ra ${resRooster.length} mục; tìm 'Glutinous' ra ${resGlutinous.length} mục; tìm 'Bamboo' ra ${resStick.length} mục.`
+  );
+}
+
 // ================================================================================
 // SUITE 3: KIỂM THỬ GIAO DIỆN & LUỒNG TƯƠNG TÁC (UI/UX, STATE & ACCESSIBILITY)
 // ================================================================================
@@ -357,17 +401,19 @@ const SUITE_3 = "3. UI/UX, State & Accessibility";
     'term-detail-section', 'term-detail-card', 'detail-term-image',
     'detail-term-title', 'detail-term-ipa', 'detail-term-definition',
     'audio-pronounce-btn', 'audio-waves', 'results-list-section',
-    'terms-grid', 'alphabet-matrix', 'sidebar-related-list'
+    'terms-grid', 'alphabet-matrix', 'sidebar-related-list',
+    'tab-btn-image', 'tab-btn-video', 'detail-image-box', 'detail-video-box',
+    'audio-pronounce-en-btn', 'detail-en-term-title', 'detail-en-ipa', 'detail-en-definition-text'
   ];
   const missingIds = requiredIds.filter(id => !htmlContent.includes(`id="${id}"`));
   recordTest(
     SUITE_3,
-    "TC-UI-01: Kiểm tra các ID phần tử DOM tương tác trọng yếu",
-    "Tất cả 19 IDs bắt buộc có trong index.html",
+    "TC-UI-01: Kiểm tra các ID phần tử DOM tương tác trọng yếu (Bilingual & Media)",
+    `Tất cả ${requiredIds.length} IDs bắt buộc có trong index.html`,
     0,
     missingIds.length,
     missingIds.length === 0,
-    missingIds.length > 0 ? `Thiếu: ${missingIds.join(", ")}` : "Đầy đủ 100% ID phần tử"
+    missingIds.length > 0 ? `Thiếu: ${missingIds.join(", ")}` : `Đầy đủ 100% (${requiredIds.length}/${requiredIds.length}) ID phần tử song ngữ & media`
   );
 }
 
