@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "datasetTitle": "Cơ sở Dữ liệu Tri thức Toàn diện về Nghệ thuật Tò he Làng Xuân La",
+  "datasetEnglishTitle": "Comprehensive Intangible Cultural Heritage Database of Xuan La Folk Toy (To He)",
+  "version": "1.0.0",
+  "lastUpdated": "2026-11-08",
+  "license": "CC-BY-NC-SA-4.0",
+  "spatialContext": {
+    "village": "Xuân La",
+    "commune": "Phượng Dực",
+    "district": "Phú Xuyên",
+    "city": "Hà Nội",
+    "country": "Việt Nam",
+    "coordinates": {
+      "latitude": 20.7756,
+      "longitude": 105.8542,
+      "dms": "20°46'32\"N, 105°51'15\"E"
+    },
+    "riverBasin": "Lưu vực sông Nhuệ cổ"
+  },
+  "historicalTimeline": [
+    {
+      "period": "Thế kỷ XVI - XVII",
+      "milestone": "Khởi phát tục nặn 'con bánh chim cò' bằng bột nếp cúng tế Thành hoàng làng tại đình Xuân La."
+    },
+    {
+      "period": "Đầu thế kỷ XX",
+      "milestone": "Sáng kiến gắn còi nứa tép phát ra âm thanh 'tò te he', hình thành tên gọi 'Tò he'."
+    },
+    {
+      "period": "15/05/2009",
+      "milestone": "Thành lập Câu lạc bộ Làng nghề truyền thống Tò he Xuân La quy tụ hơn 120 nghệ nhân."
+    },
+    {
+      "period": "10/2010",
+      "milestone": "Xác lập Kỷ lục Việt Nam với tác phẩm Tò he Rồng thời Lý 300kg và Rùa vàng 250kg nhân Đại lễ 1000 năm Thăng Long."
+    },
+    {
+      "period": "2017 - 2019",
+      "milestone": "Nghệ nhân Đặng Văn Hậu phối hợp cùng Nhà nghiên cứu Trịnh Bách và Nghệ nhân Phạm Nguyệt Ánh phục hồi thành công 3 dòng con giống bột cổ (Xuân La, Đồng Xuân, Phố Khách)."
+    },
+    {
+      "period": "2026",
+      "milestone": "Công bố Từ điển Điền dã 177 thuật ngữ, Đồ thị Ngữ nghĩa Di sản số và hồ sơ đề cử Di sản văn hóa phi vật thể quốc gia."
+    }
+  ],
+  "materialScienceFormulas": {
+    "starchRatio": {
+      "standard": {
+        "glutinousRice": "10%",
+        "regularRice": "90%",
+        "ratio": "1 : 10",
+        "season": "Mùa thu mát mẻ"
+      },
+      "drySummer": {
+        "glutinousRice": "20% - 30%",
+        "regularRice": "70% - 80%",
+        "ratio": "2:10 đến 3:10",
+        "purpose": "Giữ ẩm, chống nứt nẻ và khô cứng bề mặt"
+      },
+      "humidWinter": {
+        "glutinousRice": "8%",
+        "regularRice": "92%",
+        "ratio": "0.8 : 10",
+        "purpose": "Tăng cường khung gel Amylose, chống chảy sệ và dính nhão"
+      }
+    },
+    "naturalDyes": [
+      {
+        "color": "Đỏ",
+        "source": "Màng hạt quả Gấc chín tươi (Lycopene)",
+        "preparation": "Bóp nhuyễn gấc cùng rượu trắng, nhào trực tiếp vào bột chín nóng"
+      },
+      {
+        "color": "Vàng",
+        "source": "Củ nghệ già tươi cô đặc (Curcumin) hoặc sắc nước hoa hòe",
+        "preparation": "Giã nát nghệ tươi, vắt lấy nước cốt đậm đặc, lọc sạch bã xơ"
+      },
+      {
+        "color": "Xanh lục",
+        "source": "Dịch cốt lá riềng, lá chàm, lá nếp dứa (Chlorophyll)",
+        "preparation": "Giã nát lá với chút muối tinh, vắt lấy dịch cốt cô đặc"
+      },
+      {
+        "color": "Đen",
+        "source": "Dịch chiết cỏ mực (nhọ nồi) hoặc tro rơm nếp đốt sạch rây mịn",
+        "preparation": "Hòa tro mịn với nước cốt lá riềng, lọc qua vải màn rồi nhồi vào bột"
+      },
+      {
+        "color": "Trắng",
+        "source": "Màu tự nhiên của hạt gạo nếp cái hoa vàng luộc chín",
+        "preparation": "Không pha màu, giữ nguyên độ ngà tự nhiên của tinh bột"
+      }
+    ]
+  },
+  "threeAncientLineages": [
+    {
+      "name": "Dòng Phú Xuyên (Tò he Xuân La)",
+      "format": "Cắm trên que tre vót nhọn dài 30-40cm",
+      "feature": "Có kèn còi nứa tò te, màu sắc tương phản mạnh rực rỡ, nghệ nhân bán dạo hội hè",
+      "subjects": ["Gà trống", "Trâu cày", "Cá chép", "Tứ linh", "Thánh Gióng"]
+    },
+    {
+      "name": "Dòng Đồng Xuân (Kinh kỳ Thăng Long xưa)",
+      "format": "Nặn đặt cố định trên đĩa sứ tráng men nhỏ",
+      "feature": "Đường nét thanh tao, bột nếp chín ngọt dịu thơm hương, phục vụ mâm cỗ Trung thu rằm tháng Tám",
+      "subjects": ["Chó xù bưởi", "Đàn lợn âm dương", "Cá chép trông trăng", "Mâm xôi quả"]
+    },
+    {
+      "name": "Dòng Phố Khách (Hàng Buồm - Mã Mây)",
+      "format": "Nặn trên đĩa nhỏ, văn hóa giao thoa người Hoa - Việt",
+      "feature": "Tạo hình béo tròn phúc hậu, quét lớp nước đường mạch nha bóng láng như gốm sứ",
+      "subjects": ["Tam Quốc (Lưu - Quan - Trương)", "Tây Du Ký", "Tam Đa Phúc Lộc Thọ", "Mâm ngũ quả"]
+    }
+  ],
+  "notableArtisans": [
+    {
+      "name": "Đặng Văn Hạ",
+      "birth": 1930,
+      "death": 2021,
+      "role": "Trưởng lão làng nghề với hơn 70 năm hành nghề"
+    },
+    {
+      "name": "Đặng Văn Khương",
+      "birth": 1968,
+      "title": "Nghệ nhân Ưu tú",
+      "role": "Chủ nhiệm Câu lạc bộ Làng nghề truyền thống Tò he Xuân La"
+    },
+    {
+      "name": "Chu Tiến Công",
+      "birth": 1963,
+      "title": "Bàn tay vàng mỹ thuật dân gian",
+      "role": "Phó Chủ nhiệm CLB, chuyên gia nặn chân dung thần tốc"
+    },
+    {
+      "name": "Đặng Văn Hậu",
+      "birth": 1985,
+      "title": "Nghệ nhân Dân gian",
+      "role": "Người tiên phong phục hưng 3 dòng con giống bột cổ truyền Việt Nam"
+    },
+    {
+      "name": "Nguyễn Văn Thành",
+      "birth": 1975,
+      "role": "Nghệ nhân lưu động biểu diễn và giảng dạy quốc tế"
+    }
+  ],
+  "academicBibliography": [
+    {
+      "author": "Lê Thị Hồng Thơ",
+      "year": 2008,
+      "title": "Tìm hiểu nghề nặn Tò he Xuân La một nét đẹp văn hóa dân gian",
+      "institution": "Trường Đại học Văn hóa Hà Nội",
+      "type": "Khóa luận tốt nghiệp khoa Di sản Văn hóa"
+    },
+    {
+      "author": "Trịnh Bách",
+      "year": 2019,
+      "title": "Khảo cứu và phục dựng con giống bột Trung thu cổ truyền Thăng Long - Hà Nội",
+      "type": "Công trình nghiên cứu di sản dân gian"
+    },
+    {
+      "author": "Viện Văn hóa Nghệ thuật Quốc gia Việt Nam (VICAS)",
+      "year": 2020,
+      "title": "Nghệ thuật thị giác dân gian di động trong bối cảnh đương đại: Trường hợp Tò he Xuân La",
+      "type": "Kỷ yếu hội thảo khoa học"
+    }
+  ]
+}
