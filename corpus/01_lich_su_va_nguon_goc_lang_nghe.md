@@ -43,3 +43,4 @@
   - Nghệ nhân cắm các que tò he đã nặn lên một thanh xốp hoặc bó rơm rạ cuộn tròn buộc trên đầu gậy tre để chào mời khách mua.
 * **Mạng lưới giao thương & Thủy lộ sông Nhuệ:**
   Từ làng Xuân La, các nghệ nhân đi theo đường thủy sông Nhuệ, tỏa ra khắp các vùng chợ quê của Hà Đông, Sơn Tây, Nam Định, Hà Nam, Hải Dương, Hưng Yên và hội tụ đông đảo nhất tại đất kinh kỳ Kẻ Chợ - Thăng Long - Hà Nội (khu vực phố cổ Hàng Buồm, Mã Mây, chợ Đồng Xuân, bờ hồ Hoàn Kiếm).
+

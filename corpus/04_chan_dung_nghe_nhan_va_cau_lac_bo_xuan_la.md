@@ -53,3 +53,4 @@ Vào tháng 10 năm 2010, nhân dịp Đại lễ kỷ niệm 1000 năm Thăng L
 ## 4. KHÔNG GIAN THỰC HÀNH DI SẢN ĐƯƠNG ĐẠI
 * **Phố đi bộ Hồ Gươm (Hà Nội):** Không gian diễn xướng và tương tác cộng đồng lớn nhất của nghệ nhân Xuân La vào mỗi dịp cuối tuần, thu hút hàng vạn trẻ em và du khách quốc tế.
 * **Bảo tàng Dân tộc học Việt Nam & Văn Miếu - Quốc Tử Giám:** Địa điểm thường niên tổ chức các workshop giáo dục di sản cho học sinh, sinh viên và nghiên cứu sinh.
+

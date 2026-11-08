@@ -20,3 +20,4 @@
 Các tư liệu trong thư mục này được tổng hợp, thẩm định và đối sánh từ các công trình nghiên cứu của Viện Văn hóa Nghệ thuật Quốc gia Việt Nam (VICAS), Trường Đại học Văn hóa Hà Nội, Cục Di sản Văn hóa, Sở Văn hóa & Thể thao Hà Nội, kết hợp với các ghi chép điền dã thực địa tại làng Xuân La (xã Phượng Dực, huyện Phú Xuyên, Hà Nội).
 
 Vui lòng tuân thủ quy chuẩn trích dẫn khoa học khi sử dụng tư liệu cho các đề tài nghiên cứu, luận văn hoặc công bố học thuật.
+

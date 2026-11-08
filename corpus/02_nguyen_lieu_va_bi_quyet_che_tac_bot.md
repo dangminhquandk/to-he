@@ -92,3 +92,4 @@ Tò he Xuân La cổ truyền cam kết nguyên tắc **100% màu ăn được (
 * **Lược dắt (Comb tool):** Chiếc lược bí nhỏ hoặc lược sừng có răng mau nhọn, dùng để khía đường vân lông cánh chim, vây cá, vảy rồng và nan quạt.
 * **Dao bài (Craft knife):** Chiếc dao nhỏ bằng thép không gỉ cán gỗ dùng để cắt gọt, tỉa chi tiết nhỏ và tạo nếp gấp.
 * **Sáp ong trắng (Beeswax):** Thoa một lớp mỏng lên đầu ngón tay và dụng cụ nhằm chống bám dính tinh bột và tạo độ bóng láng thẩm mỹ cho tác phẩm sau khi hoàn thiện.
+

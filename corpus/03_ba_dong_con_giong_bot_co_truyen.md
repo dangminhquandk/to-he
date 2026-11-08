@@ -62,3 +62,4 @@ Vào cuối thế kỷ XX, trước làn sóng ồ ạt của đồ chơi nhựa
 * **Kết quả phục dựng xuất sắc:**
   - Bộ ba đã phối hợp thành công, giải mã lại công thức bột nếp dẻo thơm và khôi phục trọn vẹn hơn **50 mẫu con giống bột Đồng Xuân và Phố Khách** cổ truyền sau hơn 70 năm thất truyền.
   - Các bộ sưu tập con giống bột phục hưng đã được triển lãm tại Trung tâm Giao lưu Văn hóa Phố cổ Hà Nội (50 Đào Duy Từ), Bảo tàng Dân tộc học Việt Nam và Văn Miếu - Quốc Tử Giám, thu hút sự thán phục của các nhà nghiên cứu văn hóa trong nước và quốc tế.
+

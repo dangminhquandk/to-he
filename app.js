@@ -1037,12 +1037,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Stage buttons
       const stageButtons = [stageBtn1, stageBtn2, stageBtn3];
+      const stageGuides = [
+        "Giai đoạn 1 (Phôi cầu): Vê tròn khối bột nếp luộc chín, miết chặt mu bàn tay khử bọt khí và cắm định vị chắc chắn trên đầu que tre vót nhẵn.",
+        "Giai đoạn 2 (Vuốt thân): Dùng ngón cái và ngón trỏ vuốt thon tạo hình quả lê (thân dài, cổ vươn) và định hình mầm đầu con giống.",
+        "Giai đoạn 3 (Hoàn thiện): Đắp mào gà cờ (đỏ gấc), gắn mỏ nhọn (vàng nghệ), dùng lược dắt khía vân cánh và uốn vuốt lông đuôi ngũ sắc uốn lượn."
+      ];
       stageButtons.forEach((btn, idx) => {
         if (!btn) return;
         btn.addEventListener("click", () => {
           stageButtons.forEach(b => b?.classList.remove("active"));
           btn.classList.add("active");
           morphologyState.stage = idx + 1;
+          const guideEl = document.getElementById("stage-guide-text");
+          if (guideEl && stageGuides[idx]) {
+            guideEl.textContent = stageGuides[idx];
+          }
           render3DMorphologyFrame();
         });
       });
@@ -1670,32 +1679,32 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================================================================
   const LANDMARKS_DATA = {
     dinh_lang: {
-      badge: "Di tích Lịch sử - Tín ngưỡng",
+      badge: "Di tích Lịch sử - Tín ngưỡng Dân gian",
       title: "Đình Làng Xuân La",
-      coords: "Tọa độ: 20.7756° N, 105.8542° E",
-      content: "Nơi thờ các vị Thành hoàng làng và tổ nghề nặn tò he truyền thống. Hàng năm vào ngày rằm tháng Giêng âm lịch, làng tổ chức hội thi nặn tò he để các nghệ nhân tranh tài, nặn các con giống chim cò dâng lễ cửa đình.",
-      terms: ["to-he", "chim-co", "mam-le"]
+      coords: "Tọa độ: 20°46'32\" N, 105°51'15\" E",
+      content: "Trung tâm tín ngưỡng và không gian thiêng của làng nghề Xuân La. Tương truyền vào thế kỷ XVI - XVII dưới thời Lê Trung Hưng, khi gặp đại hạn mất mùa, dân làng đã sáng tạo ra tục nặn 'con bánh chim cò' từ bột nếp để dâng cúng thần hoàng cầu mưa thuận gió hòa. Hàng năm vào ngày rằm tháng Giêng, đình làng là nơi tổ chức hội thi nặn tò he truyền thống giữa các dòng họ Đặng, Chu, Nguyễn.",
+      terms: ["to-he", "chim-co", "mam-bong-le-pham", "tu-linh", "bo-luc-suc"]
     },
     khong_gian: {
-      badge: "Không gian Bảo tồn Thực nghiệm",
-      title: "Nhà Trưng bày Di sản Làng nghề Xuân La",
+      badge: "Không gian Bảo tồn Thực nghiệm & Kỷ lục",
+      title: "Trụ sở CLB Tò he Xuân La & Nhà Trưng bày Di sản",
       coords: "Tọa độ: 20.7761° N, 105.8550° E",
-      content: "Không gian bảo tồn và trưng bày hơn 500 mẫu hiện vật tò he qua các thời kỳ lịch sử. Nơi lưu giữ các con giống chim cò cổ truyền và tổ chức các buổi truyền dạy kỹ năng nặn tò he cho thế hệ trẻ.",
-      terms: ["con-giong", "nghe-nhan", "ve-tron", "ve-dai"]
+      content: "Thành lập ngày 15/05/2009 quy tụ hơn 120 nghệ nhân. Nơi lưu giữ ký ức xác lập Kỷ lục Việt Nam (VietKings 10/2010) với tác phẩm Rồng thời Lý 300kg và Rùa vàng 250kg nhân Đại lễ 1000 năm Thăng Long. Đây cũng là trung tâm phục hưng 3 dòng con giống bột cổ (Xuân La, Đồng Xuân, Phố Khách) và tổ chức các lớp truyền dạy kỹ năng nặn bột miễn phí cho thiếu nhi.",
+      terms: ["con-giong-bot", "con-giong-ta-con-giong-dong-xuan", "con-giong-khach-con-giong-pho-khach", "ve-tron", "ve-dai"]
     },
     nguyen_lieu: {
-      badge: "Địa bàn Canh tác & Nguyên liệu",
+      badge: "Địa bàn Canh tác & Khoa học Vật liệu",
       title: "Vùng Lúa Nếp Cái Hoa Vàng Phượng Dực",
       coords: "Tọa độ: 20.7738° N, 105.8510° E",
-      content: "Cánh đồng phù sa màu mỡ cung cấp giống lúa nếp cái hoa vàng dẻo thơm trứ danh - linh hồn của bột tò he Xuân La. Bột tò he truyền thống đạt độ dẻo mịn tuyệt đối nhờ tỷ lệ pha chế 10 phần nếp và 1 phần gạo tẻ từ vùng đất này.",
-      terms: ["bot-gao-nep", "bot-gao-te", "ty-le-bot", "luoc-bot"]
+      content: "Đồng đất phù sa trũng sông Nhuệ cung cấp giống lúa nếp cái hoa vàng hạt mẩy, dẻo thơm trứ danh. Bột tò he đạt độ dẻo đàn hồi và bền vững cấu trúc nhờ khoa học cân bằng giữa đại phân tử Amylose (tẻ) và Amylopectin (nếp) theo tỷ lệ mùa thu 10:1, mùa hè 10:2 để chống nứt, và mùa đông 10:0.8 chống nhão. Toàn bộ bột được nhuộm bằng 100% thảo mộc tự nhiên: gấc, nghệ, lá riềng và nhọ nồi.",
+      terms: ["bot-nep", "bot-te", "luoc-bot", "nhao-bot", "mau-ngu-sac", "sap-ong"]
     },
     song_nhue: {
-      badge: "Địa lý Văn hóa Cố truyền",
+      badge: "Thủy lộ Lịch sử & Gánh Hàng Bán Dạo",
       title: "Bến Cổ Làng Nghề (Lưu vực Sông Nhuệ)",
       coords: "Tọa độ: 20.7770° N, 105.8565° E",
-      content: "Dòng sông Nhuệ lịch sử gắn liền với bến lấy nước nguồn luộc bột và là thủy lộ cho các chuyến đi bán dạo tò he của các cụ nghệ nhân Xuân La xưa qua khắp các chợ quê đồng bằng Bắc Bộ và đất kinh kỳ Thăng Long - Hà Nội.",
-      terms: ["que-tre", "hinh-tuong-dan-gian", "mau-tu-nhien"]
+      content: "Dòng sông Nhuệ cổ là thủy lộ giao thương đưa các thế hệ nghệ nhân Xuân La cùng gánh đồ nghề (thúng con, hòm gỗ, bùi nhùi rơm cắm que) tỏa đi khắp chợ quê Sơn Tây, Hà Đông, Nam Định, Hải Dương và hội tụ đông đảo nhất tại đất kinh kỳ Kẻ Chợ - Thăng Long (phố Hàng Buồm, Mã Mây, chợ Đồng Xuân). Chiếc còi nứa tép gắn cuống que thổi tiếng 'tò te he' trên bến chợ quê đã khai sinh ra tên gọi Tò he độc bản.",
+      terms: ["don-ganh", "hom-do-nghe", "que-tre", "ken-ong", "bui-nhui-rom"]
     }
   };
 
@@ -1744,14 +1753,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     switch (format) {
       case "mla":
-        return `Đặng, Minh Quân, và Nhóm Khảo cứu Dân tộc học. "${term.term}." Từ điển Thuật ngữ Điền dã Nghệ thuật Tò he Xuân La, CSDL Di sản Văn hóa Phi vật thể Việt Nam, 2026, tohexuanla.vn/terms/${term.id}.`;
+        return `Đặng, Minh Quân, và Ban Chủ nhiệm CLB Làng nghề Tò he Xuân La. "${term.term}." Từ điển Thuật ngữ Điền dã Nghệ thuật Tò he Xuân La, CSDL Di sản Văn hóa Phi vật thể Việt Nam, 2026, tohexuanla.vn/terms/${term.id}.`;
       case "chicago":
-        return `Đặng, Minh Quân, và Nhóm Khảo cứu Dân tộc học. 2026. "${term.term}." Trong Từ điển Thuật ngữ Điền dã Nghệ thuật Tò he Xuân La: Bảo tồn Tri thức Bản địa & Di sản Văn hóa Phi vật thể. Hà Nội: Di sản Văn hóa Số. https://tohexuanla.vn/terms/${term.id}.`;
+        return `Đặng, Minh Quân, và Ban Chủ nhiệm CLB Làng nghề Tò he Xuân La. 2026. "${term.term}." Trong Từ điển Thuật ngữ Điền dã Nghệ thuật Tò he Xuân La: Bảo tồn Tri thức Bản địa & Di sản Văn hóa Phi vật thể (177 Mục từ Song ngữ). Hà Nội: Di sản Văn hóa Số. https://tohexuanla.vn/terms/${term.id}.`;
       case "bibtex":
         return `@dataset{tohe_fieldwork_term_${term.id.replace(/-/g, '_')},
-  author    = {Dang, Minh Quan and Fieldwork Research Team},
+  author    = {Dang, Minh Quan and Xuan La Heritage Research Team},
   title     = {{${term.term}} (${term.enTerm || ''})},
-  booktitle = {Xuan La Folk Toy (To He) Fieldwork Heritage Dataset},
+  booktitle = {Xuan La Folk Toy (To He) Fieldwork Heritage Dataset (177 Bilingual Terms)},
   year      = {2026},
   category  = {${term.categoryLabel}},
   phonetics = {${term.ipaVi || term.ipa}},
@@ -1760,7 +1769,7 @@ document.addEventListener("DOMContentLoaded", () => {
 }`;
       case "apa":
       default:
-        return `Đặng, M. Q., & Nhóm Khảo cứu Dân tộc học. (2026). "${term.term}" [Mục từ điền dã số ${term.id}]. Trong Từ điển Thuật ngữ Điền dã Nghệ thuật Tò he Xuân La: Bảo tồn Di sản Văn hóa Phi vật thể (177 mục từ). Hà Nội: CSDL Di sản Số. https://tohexuanla.vn/terms/${term.id}`;
+        return `Đặng, M. Q., & Ban Chủ nhiệm CLB Làng nghề Tò he Xuân La. (2026). "${term.term}" [Mục từ điền dã số ${term.id}]. Trong Từ điển Thuật ngữ Điền dã Nghệ thuật Tò he Xuân La: Bảo tồn Di sản Văn hóa Phi vật thể (177 mục từ). Hà Nội: CSDL Di sản Số. https://tohexuanla.vn/terms/${term.id}`;
     }
   }
 
@@ -1913,7 +1922,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- 9. MODAL VỀ CHÚNG TÔI ---
+  // --- 9. MODAL VỀ CHÚNG TÔI & HỒ SƠ NCKH LÀNG NGHỀ ---
   function openAboutModal() {
     aboutModal.style.display = "flex";
   }
@@ -1930,6 +1939,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   aboutModal.addEventListener("click", (e) => {
     if (e.target === aboutModal) closeAboutModal();
+  });
+
+  // Dossier Tabs switching logic
+  const dossierTabBtns = document.querySelectorAll(".dossier-tab-btn");
+  const dossierPanes = document.querySelectorAll(".dossier-pane");
+  dossierTabBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      dossierTabBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const tabTarget = btn.getAttribute("data-dossier-tab");
+      dossierPanes.forEach(pane => {
+        if (pane.id === `dossier-pane-${tabTarget}`) {
+          pane.style.display = "flex";
+          pane.classList.add("active");
+        } else {
+          pane.style.display = "none";
+          pane.classList.remove("active");
+        }
+      });
+    });
   });
 
   // --- 10. LIGHTBOX PHÓNG TO ẢNH ---

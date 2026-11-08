@@ -43,3 +43,4 @@ Hiện nay, các cơ quan chuyên môn thuộc Sở Văn hóa & Thể thao Hà N
   - Xây dựng **Kho ngữ liệu số & Từ điển Đa phương tiện Song ngữ** (như dự án hiện tại đang thi công).
   - Ứng dụng công nghệ đồ thị tri thức (Knowledge Graph), mô hình 3D giải phẫu tạo hình và WebAR để đưa tò he vào giáo dục di sản học đường trực quan.
   - Thành lập trung tâm trải nghiệm di sản thực tế tại Xuân La gắn với tuyến du lịch làng nghề phía Nam Hà Nội.
+

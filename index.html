@@ -318,6 +318,10 @@
                   <button class="stage-btn" data-stage="2" id="stage-btn-2">2. Vuốt thân</button>
                   <button class="stage-btn" data-stage="3" id="stage-btn-3">3. Hoàn thiện</button>
                 </div>
+                <div class="stage-guide-box" id="stage-guide-box">
+                  <span class="stage-guide-icon">💡</span>
+                  <span class="stage-guide-text" id="stage-guide-text">Giai đoạn 1 (Phôi cầu): Vê tròn khối bột nếp luộc chín, miết chặt mu bàn tay khử bọt khí và cắm định vị chắc chắn trên đầu que tre vót nhẵn.</span>
+                </div>
                 <div class="stage-options">
                   <label class="wireframe-toggle-label">
                     <input type="checkbox" id="wireframe-toggle"> Khung lưới giải phẫu (Wireframe)
@@ -657,33 +661,242 @@
 
   </div>
 
-  <!-- ABOUT US / LÀNG NGHỀ MODAL -->
+  <!-- ABOUT US / LÀNG NGHỀ RESEARCH DOSSIER MODAL -->
   <div class="modal-backdrop" id="about-modal" style="display: none;">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dossier-dialog">
       <button class="modal-close-btn" id="modal-close-btn">✕</button>
       <div class="modal-header">
-        <span class="modal-badge">Di sản văn hóa phi vật thể</span>
-        <h2 class="modal-title">Nghệ thuật Tò he làng Xuân La</h2>
+        <span class="modal-badge">Hồ sơ Di sản Văn hóa Phi vật thể & NCKH Dân tộc học</span>
+        <h2 class="modal-title">Nghệ thuật Tò he Làng Xuân La: Bản sắc & Tri thức Dân gian 500 Năm</h2>
+        <p class="modal-subtitle">Kho ngữ liệu số đối sánh từ công trình nghiên cứu VICAS, điều tra dân tộc học và phục hưng 3 dòng con giống bột cổ truyền Việt Nam.</p>
       </div>
-      <div class="modal-body">
-        <p><strong>Làng Xuân La</strong> (xã Phượng Dực, huyện Phú Xuyên, Hà Nội) là làng nghề nặn tò he duy nhất tại Việt Nam với lịch sử hơn 300 năm hình thành và phát triển.</p>
-        <p>Tò he thuở sơ khai được gọi là <em>"con bánh chim cò"</em>, là những sản phẩm làm bằng bột gạo nếp thơm ngon, nặn thành hình các con vật gần gũi như chim, cò, gà, trâu... để dâng cúng thần hoàng và các dịp lễ hội.</p>
-        <p>Về sau, các nghệ nhân gắn thêm một chiếc còi nhỏ bằng nứa ở cuống que, khi thổi phát ra âm thanh <em>"tò te he"</em> vui tai. Từ đó, cái tên <strong>Tò he</strong> thân thương ra đời và in sâu vào tâm thức của bao thế hệ trẻ em Việt Nam.</p>
-        <div class="modal-stats">
+
+      <!-- DOSSIER NAVIGATION TABS -->
+      <div class="dossier-tabs-nav" role="tablist">
+        <button class="dossier-tab-btn active" data-dossier-tab="history">1. Lịch sử & Huyền tích</button>
+        <button class="dossier-tab-btn" data-dossier-tab="lineages">2. Ba dòng con giống</button>
+        <button class="dossier-tab-btn" data-dossier-tab="materials">3. Khoa học bột & Ngũ sắc</button>
+        <button class="dossier-tab-btn" data-dossier-tab="artisans">4. Nghệ nhân & Kỷ lục</button>
+        <button class="dossier-tab-btn" data-dossier-tab="unesco">5. Khảo luận & UNESCO</button>
+      </div>
+
+      <div class="modal-body dossier-body">
+        <!-- TAB 1: LỊCH SỬ & HUYỀN TÍCH -->
+        <div class="dossier-pane active" id="dossier-pane-history">
+          <div class="dossier-section">
+            <h4 class="dossier-heading">1.1. Vị trí địa văn hóa & Bối cảnh phù sa sông Nhuệ</h4>
+            <p><strong>Làng Xuân La</strong> (xã Phượng Dực, huyện Phú Xuyên, TP. Hà Nội; tọa độ địa lý: <code>20°46'32" N, 105°51'15" E</code>) là làng nghề nặn bột duy nhất tại Việt Nam. Nằm ở vùng trũng phù sa màu mỡ sông Nhuệ cổ, Phượng Dực từ xưa là vựa lúa nếp cái hoa vàng hạt mẩy, dẻo thơm trứ danh - tiền đề vật chất quyết định sự ra đời của nghề làm đồ chơi và thực phẩm từ bột gạo.</p>
+          </div>
+          <div class="dossier-section">
+            <h4 class="dossier-heading">1.2. Niên đại khởi phát & Huyền tích dâng cúng</h4>
+            <p>Theo gia phả các dòng họ Đặng, Chu, Nguyễn và lời truyền khẩu của các bậc cao niên, nghề nặn bột Xuân La có niên đại ước tính từ <strong>300 đến hơn 500 năm</strong> (khoảng thế kỷ XVI - XVII dưới thời Lê Trung Hưng). Thuở xưa trong một trận hạn hán mất mùa, dân làng không đủ lễ vật thịnh soạn dâng thần hoàng; những nông dân khéo tay đã đồ chín gạo nếp, nhào nặn thành hình chim, cò, gà, trâu rồi nhuộm màu cây cỏ dâng lên cửa đình cầu mưa thuận gió hòa.</p>
+          </div>
+          <div class="dossier-section">
+            <h4 class="dossier-heading">1.3. Tục làm "Bánh chim cò" & Sự ra đời tên gọi "Tò he"</h4>
+            <p>Trước khi mang tên "Tò he", sản phẩm được gọi là <em>"con bánh chim cò"</em> hoặc <em>"con bánh"</em>, vừa là lễ vật cúng đình, vừa là thức quà lộc ăn được cho trẻ nhỏ. Vào cuối thế kỷ XIX - đầu thế kỷ XX, các cụ nghệ nhân sáng tạo gắn thêm một chiếc còi nứa tép có dăm kèn mỏng ở chân que. Khi thổi phát ra chuỗi âm thanh trong trẻo <em>"tò te he"</em>. Tiếng rao tượng thanh vui nhộn ấy lâu dần được gọi chệch thành danh từ kép <strong>"TÒ HE"</strong> lưu truyền đến nay.</p>
+          </div>
+        </div>
+
+        <!-- TAB 2: BA DÒNG CON GIỐNG BỘT -->
+        <div class="dossier-pane" id="dossier-pane-lineages" style="display: none;">
+          <div class="dossier-section">
+            <h4 class="dossier-heading">2.1. Phân loại 3 Dòng phái Con giống bột Cổ truyền Việt Nam</h4>
+            <div class="dossier-table-wrap">
+              <table class="dossier-table">
+                <thead>
+                  <tr>
+                    <th>Dòng phái</th>
+                    <th>Không gian sinh tồn</th>
+                    <th>Đặc điểm tạo hình & Kỹ thuật</th>
+                    <th>Đề tài tiêu biểu</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Dòng Phú Xuyên</strong> (Tò he Xuân La)</td>
+                    <td>Làng Xuân La, hội chợ quê đồng bằng Bắc Bộ</td>
+                    <td>Cắm que tre dài 30-40cm, gắn còi nứa tép tò te, thao tác thần tốc vài phút, màu sắc tươi sáng tương phản.</td>
+                    <td>Gà trống, trâu cày, cá chép, Tứ linh (Long, Lân, Quy, Phụng), Thánh Gióng.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Dòng Đồng Xuân</strong> (Kinh kỳ Thăng Long)</td>
+                    <td>Khu chợ Đồng Xuân, Hàng Than, Hàng Gai phố cổ</td>
+                    <td>Nặn đặt trên đĩa sứ tráng men lam, đường nét tao nhã thanh lịch Tràng An, bột trộn đường vị ngọt thanh.</td>
+                    <td>Mâm cỗ Trung thu trông trăng: Chó xù bưởi, lợn đàn âm dương, cá hóa rồng.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Dòng Phố Khách</strong> (Khu người Hoa)</td>
+                    <td>Phố Hàng Buồm, Mã Mây, Lãn Ông xưa</td>
+                    <td>Tạo hình đẫy đà phúc hậu, quét nước đường mạch nha cô đặc bóng láng trơn mượt như tượng gốm sứ.</td>
+                    <td>Tích Tam Quốc Diễn Nghĩa, Tây Du Ký, Bát Tiên quá hải, Tam Đa, mâm ngũ quả tí hon.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="dossier-section">
+            <h4 class="dossier-heading">2.2. Hành trình phục dựng lịch sử (2017 - 2019)</h4>
+            <p>Sau nhiều thập kỷ thất truyền trước làn sóng đồ chơi nhựa ngoại nhập, hai dòng Đồng Xuân và Phố Khách đã được hồi sinh ngoạn mục nhờ sự phối hợp giữa <strong>Nhà nghiên cứu Trịnh Bách</strong>, <strong>Bà Phạm Nguyệt Ánh</strong> (nhân chứng sống phố Hàng Than) và <strong>Nghệ nhân trẻ Đặng Văn Hậu</strong> (Xuân La), khôi phục thành công hơn 50 mẫu con giống bột cổ trưng bày tại các bảo tàng lớn.</p>
+          </div>
+        </div>
+
+        <!-- TAB 3: KHOA HỌC BỘT & NGŨ SẮC -->
+        <div class="dossier-pane" id="dossier-pane-materials" style="display: none;">
+          <div class="dossier-section">
+            <h4 class="dossier-heading">3.1. Cân bằng Phân tử Tinh bột (Amylose vs. Amylopectin)</h4>
+            <p>Khối bột tò he đạt độ dẻo đàn hồi và đứng form hoàn hảo dựa trên sự tương tác giữa mạch thẳng <strong>Amylose</strong> (từ gạo tẻ - tạo khung gel liên kết, chống chảy sệ) và mạch nhánh <strong>Amylopectin</strong> (từ nếp cái hoa vàng - giữ ẩm, dẻo dai, chống rạn nứt bề mặt).</p>
+            <div class="dossier-table-wrap">
+              <table class="dossier-table">
+                <thead>
+                  <tr>
+                    <th>Khí hậu & Thời tiết</th>
+                    <th>Tỷ lệ phối trộn (Tẻ : Nếp)</th>
+                    <th>Cơ chế công nghệ</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Mùa thu (tiêu chuẩn)</td>
+                    <td><strong>10 : 1</strong> (hoặc 7 : 3)</td>
+                    <td>Cân bằng tối ưu giữa độ dẻo miết và độ cứng kết cấu đường nét.</td>
+                  </tr>
+                  <tr>
+                    <td>Mùa hè (hanh khô, nhiệt độ cao)</td>
+                    <td><strong>10 : 2</strong> hoặc <strong>10 : 3</strong> (tăng nếp)</td>
+                    <td>Tăng cường ngậm nước, chống khô se, nứt mào gà và đứt gãy lông đuôi.</td>
+                  </tr>
+                  <tr>
+                    <td>Mùa đông / Nồm ẩm (&gt; 85% RH)</td>
+                    <td><strong>10 : 0.8</strong> (tăng tẻ)</td>
+                    <td>Gia cố khung gel Amylose, chống chảy nhão và dính bết que tre.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="dossier-section">
+            <h4 class="dossier-heading">3.2. Hệ màu ngũ hành 100% tự nhiên ăn được</h4>
+            <ul class="dossier-color-list">
+              <li><span class="color-badge red-badge">Đỏ (Hỏa):</span> Màng quả Gấc chín tươi (Lycopene) bóp nhuyễn với rượu trắng hoặc nước gỗ vang.</li>
+              <li><span class="color-badge yellow-badge">Vàng (Thổ):</span> Nước cốt củ Nghệ tươi già (Curcumin) vắt kỹ hoặc dịch sắc hoa hòe sao vàng.</li>
+              <li><span class="color-badge green-badge">Xanh lục (Mộc):</span> Dịch ép Lá riềng giã nhuyễn với muối tinh, lá nếp thơm (Chlorophyll).</li>
+              <li><span class="color-badge black-badge">Đen (Thủy):</span> Dịch chiết cây Cỏ mực (nhọ nồi), tro rơm nếp đốt rây siêu mịn, hoặc than tre hoạt tính.</li>
+              <li><span class="color-badge white-badge">Trắng (Kim):</span> Màu trắng ngà tự nhiên của tinh bột nếp cái hoa vàng luộc chín tới.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- TAB 4: NGHỆ NHÂN & KỶ LỤC -->
+        <div class="dossier-pane" id="dossier-pane-artisans" style="display: none;">
+          <div class="dossier-section">
+            <h4 class="dossier-heading">4.1. Câu lạc bộ Làng nghề Xuân La & Kỷ lục VietKings 2010</h4>
+            <p>Ngày <strong>15 tháng 5 năm 2009</strong>, Câu lạc bộ Làng nghề truyền thống Tò he Xuân La chính thức thành lập, quy tụ hơn <strong>120 hội viên</strong> với quy chế cam kết sử dụng 100% nguyên liệu tự nhiên an toàn. Tháng 10/2010 nhân Đại lễ 1000 năm Thăng Long, CLB xác lập <strong>Kỷ lục Việt Nam (VietKings)</strong> với hai kiệt tác khổng lồ:</p>
+            <div class="record-highlight-box">
+              <div class="record-item">
+                <span class="record-icon">🐉</span>
+                <div><strong>Rồng thời Lý 300kg:</strong> Dài hơn 3 mét, 15 nghệ nhân bậc thầy hoàn thiện liên tục trong 48 giờ với đường nét hoa văn chuẩn mực điêu khắc thời Lý.</div>
+              </div>
+              <div class="record-item">
+                <span class="record-icon">🐢</span>
+                <div><strong>Rùa vàng Hồ Gươm 250kg:</strong> Mai rộng 1.8 mét, ngậm thanh gươm báu thần thoại linh thiêng.</div>
+              </div>
+            </div>
+          </div>
+          <div class="dossier-section">
+            <h4 class="dossier-heading">4.2. Chân dung các thế hệ nghệ nhân tiêu biểu</h4>
+            <div class="artisan-bios-grid">
+              <div class="artisan-bio-card">
+                <h5>Cố Trưởng lão Đặng Văn Hạ (1930 - 2021)</h5>
+                <p>Hơn 70 năm cầm que tre nhào bột, người lưu giữ trọn vẹn bí quyết luộc bột cổ và công thức sắc tố thảo dược cho làng.</p>
+              </div>
+              <div class="artisan-bio-card">
+                <h5>NNƯT Đặng Văn Khương (Sinh 1968)</h5>
+                <p>Chủ nhiệm CLB Tò he Xuân La, đưa di sản trình diễn tại các kỳ Festival Huế và trước các nguyên thủ quốc gia.</p>
+              </div>
+              <div class="artisan-bio-card">
+                <h5>Bàn tay vàng Chu Tiến Công (Sinh 1963)</h5>
+                <p>Phó Chủ nhiệm CLB, biệt tài nặn chân dung thần tốc 3-5 phút và thu nhỏ danh thắng (Chùa Một Cột, Tháp Rùa) trên đầu que tre.</p>
+              </div>
+              <div class="artisan-bio-card">
+                <h5>Nghệ nhân trẻ Đặng Văn Hậu (Sinh 1985)</h5>
+                <p>Tiên phong phục hưng 3 dòng con giống cổ, sáng lập không gian di sản Tò he Việt và đưa sản phẩm vào hệ thống bảo tàng.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 5: KHẢO LUẬN & UNESCO -->
+        <div class="dossier-pane" id="dossier-pane-unesco" style="display: none;">
+          <div class="dossier-section">
+            <h4 class="dossier-heading">5.1. Tổng quan Nghiên cứu Dân tộc học & Hàn lâm</h4>
+            <p>Di sản Tò he Xuân La được phân tích sâu sắc qua khóa luận dân tộc học của <strong>Lê Thị Hồng Thơ (2008)</strong>, chuỗi khảo luận về con giống bột của <strong>Trịnh Bách (2017-2021)</strong> và các hội thảo khoa học của <strong>Viện Văn hóa Nghệ thuật Quốc gia Việt Nam (VICAS)</strong>. Các nhà nghiên cứu định danh tò he là dạng thức <em>"nghệ thuật thị giác dân gian di động" (mobile folk visual art)</em> độc bản Đông Nam Á.</p>
+          </div>
+          <div class="dossier-section">
+            <h4 class="dossier-heading">5.2. Đối chiếu 4 Tiêu chí Công ước UNESCO 2003</h4>
+            <div class="dossier-table-wrap">
+              <table class="dossier-table">
+                <thead>
+                  <tr>
+                    <th>Tiêu chí UNESCO 2003</th>
+                    <th>Thực chứng điền dã tại Làng Xuân La</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>1. Trao truyền qua nhiều thế hệ</strong></td>
+                    <td>Tồn tại liên tục hơn 300 năm cha truyền con nối và các lớp truyền nghề cộng đồng miễn phí tại nhà văn hóa làng.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>2. Bản sắc & Ký ức cộng đồng</strong></td>
+                    <td>Gắn liền với hội thi nặn bột rằm tháng Giêng, tục dâng lễ đình làng và ý thức tự hào sâu sắc của cư dân Phượng Dực.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>3. Tính sinh thái & Bền vững</strong></td>
+                    <td>100% nguyên liệu nông nghiệp hữu cơ bản địa (gạo nếp, gấc, nghệ, riềng, tro rơm, tre nứa), hoàn toàn phân hủy sinh học.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>4. Sáng tạo thích ứng sống động</strong></td>
+                    <td>Di sản sống (Living Heritage), nghệ nhân liên tục thích nghi đề tài từ con giống cổ điển đến các hình tượng thời đại.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="dossier-section">
+            <h4 class="dossier-heading">5.3. Chiến lược Nhân văn Số (Digital Humanities)</h4>
+            <p>Dự án số hóa 177 thuật ngữ điền dã song ngữ, mô hình 3D giải phẫu tạo hình và đồ thị tri thức ngữ nghĩa là bước chuyển tiên phong nhằm phụng sự nghiên cứu mở (Open Science) và hoàn thiện hồ sơ đề cử Di sản Văn hóa Phi vật thể Quốc gia.</p>
+          </div>
+        </div>
+
+        <!-- MODAL STATS SUMMARY -->
+        <div class="modal-stats dossier-stats">
           <div class="stat-card">
-            <span class="stat-num">300+</span>
+            <span class="stat-num">500+</span>
             <span class="stat-text">Năm lịch sử</span>
           </div>
           <div class="stat-card">
-            <span class="stat-num">100%</span>
-            <span class="stat-text">Nguyên liệu tự nhiên</span>
+            <span class="stat-num">177</span>
+            <span class="stat-text">Mục từ điền dã</span>
           </div>
           <div class="stat-card">
-            <span class="stat-num">3000+</span>
-            <span class="stat-text">Nghệ nhân toàn quốc</span>
+            <span class="stat-num">3 Dòng</span>
+            <span class="stat-text">Con giống bột cổ</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">120+</span>
+            <span class="stat-text">Hội viên CLB</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">100%</span>
+            <span class="stat-text">Tự nhiên ăn được</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">VietKings</span>
+            <span class="stat-text">Kỷ lục Rồng 300kg</span>
           </div>
         </div>
       </div>
+
       <div class="modal-footer">
         <button class="primary-btn" id="modal-explore-btn">Khám phá từ điển ngay</button>
       </div>
@@ -758,8 +971,8 @@
 
   <footer class="app-footer">
     <div class="footer-inner">
-      <p>© 2026 <strong>Từ điển Tò he Việt Nam</strong> - Tôn vinh nét đẹp văn hóa dân gian làng nghề Xuân La.</p>
-      <p class="footer-sub">Thiết kế bởi Antigravity với tình yêu văn hóa truyền thống Việt Nam.</p>
+      <p>© 2026 <strong>Từ điển Tò he Việt Nam</strong> - Công trình Nghiên cứu Dân tộc học & Bảo tồn Di sản Số Làng nghề Xuân La.</p>
+      <p class="footer-sub">Hệ thống Khoa học Mở (Open Science) phục vụ bảo tồn Tri thức Bản địa theo chuẩn mực Công ước UNESCO 2003.</p>
     </div>
   </footer>
 
