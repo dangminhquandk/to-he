@@ -49,13 +49,23 @@
             </button>
           </li>
           <li>
+            <button class="nav-item-btn" id="nav-btn-graph" data-target="graph">
+              Đồ thị tri thức
+            </button>
+          </li>
+          <li>
+            <button class="nav-item-btn" id="nav-btn-map" data-target="map">
+              Bản đồ điền dã
+            </button>
+          </li>
+          <li>
             <button class="nav-item-btn" id="nav-btn-categories" data-target="categories">
               Danh mục
             </button>
           </li>
           <li>
             <button class="nav-item-btn" id="nav-btn-about" data-target="about">
-              Về chúng tôi
+              Hồ sơ NCKH
             </button>
           </li>
         </ul>
@@ -63,6 +73,12 @@
 
       <!-- Action Utilities -->
       <div class="header-actions">
+        <button class="action-btn" id="header-cite-btn" title="Trích dẫn học thuật (APA, MLA, BibTeX)" aria-label="Trích dẫn">
+          <span style="font-size: 1rem;">📝</span>
+        </button>
+        <button class="action-btn" id="header-export-btn" title="Xuất dữ liệu mở Open Science (JSON-LD, CSV)" aria-label="Xuất dữ liệu mở">
+          <span style="font-size: 1rem;">📥</span>
+        </button>
         <button class="action-btn icon-search-btn" id="header-search-trigger" title="Tìm kiếm nhanh" aria-label="Tìm kiếm">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="8"></circle>
@@ -102,13 +118,23 @@
 
         <button class="sidebar-link" id="side-link-dict" data-target="dictionary">
           <span class="icon">🔍</span>
-          <span class="text">Từ điển</span>
+          <span class="text">Từ điển thuật ngữ</span>
+        </button>
+
+        <button class="sidebar-link" id="side-link-graph" data-target="graph">
+          <span class="icon">🕸️</span>
+          <span class="text">Đồ thị tri thức</span>
+        </button>
+
+        <button class="sidebar-link" id="side-link-map" data-target="map">
+          <span class="icon">🗺️</span>
+          <span class="text">Bản đồ điền dã</span>
         </button>
 
         <div class="sidebar-group" id="category-accordion">
           <button class="sidebar-link group-toggle" id="side-link-cat" aria-expanded="true">
             <span class="icon">📁</span>
-            <span class="text">Danh mục</span>
+            <span class="text">Phân loại học</span>
             <span class="chevron">›</span>
           </button>
           
@@ -128,9 +154,14 @@
           </div>
         </div>
 
+        <button class="sidebar-link" id="side-link-cite">
+          <span class="icon">📝</span>
+          <span class="text">Trích dẫn & Dữ liệu</span>
+        </button>
+
         <button class="sidebar-link" id="side-link-about" data-target="about">
           <span class="icon">📖</span>
-          <span class="text">Về chúng tôi</span>
+          <span class="text">Hồ sơ NCKH</span>
         </button>
       </nav>
 
@@ -249,6 +280,10 @@
                 <span class="tab-icon">🎬</span>
                 <span>Video thao tác</span>
               </button>
+              <button class="media-tab-btn" id="tab-btn-3d" role="tab" aria-selected="false" aria-controls="detail-3d-box">
+                <span class="tab-icon">🧊</span>
+                <span>Mô hình 3D</span>
+              </button>
             </div>
 
             <!-- 1. Image Container -->
@@ -268,6 +303,30 @@
                 referrerpolicy="strict-origin-when-cross-origin" 
                 allowfullscreen
               ></iframe>
+            </div>
+
+            <!-- 3. Interactive 3D Craft Morphology Container -->
+            <div class="detail-3d-box" id="detail-3d-box" role="tabpanel" style="display: none;">
+              <div class="model-viewport-wrap">
+                <canvas id="morphology-3d-canvas" class="morphology-3d-canvas" width="480" height="340"></canvas>
+                <div class="model-canvas-hint">🖱️ Kéo để xoay 3D | Cuộn chuột để phóng to</div>
+              </div>
+              <div class="morphology-stage-controls">
+                <div class="stage-label">Giai đoạn tạo hình dân gian:</div>
+                <div class="morphology-stage-buttons">
+                  <button class="stage-btn active" data-stage="1" id="stage-btn-1">1. Phôi cầu</button>
+                  <button class="stage-btn" data-stage="2" id="stage-btn-2">2. Vuốt thân</button>
+                  <button class="stage-btn" data-stage="3" id="stage-btn-3">3. Hoàn thiện</button>
+                </div>
+                <div class="stage-options">
+                  <label class="wireframe-toggle-label">
+                    <input type="checkbox" id="wireframe-toggle"> Khung lưới giải phẫu (Wireframe)
+                  </label>
+                  <button class="webar-launch-btn" id="webar-launch-btn" title="Xem trên thực tế tăng cường">
+                    <span>📱</span> Khám phá WebAR
+                  </button>
+                </div>
+              </div>
             </div>
 
             <!-- Media Caption -->
@@ -346,9 +405,30 @@
               </div>
             </div>
 
+            <!-- ACADEMIC CITATION & OPEN EXPORT BUTTONS -->
+            <div class="academic-actions-row">
+              <button class="academic-action-btn" id="term-cite-btn">
+                <span>📝</span> Trích dẫn học thuật (Cite)
+              </button>
+              <button class="academic-action-btn" id="term-export-btn">
+                <span>💾</span> Xuất dữ liệu nghiên cứu (Export)
+              </button>
+            </div>
+
             <!-- KỸ THUẬT TIÊU BIỂU -->
             <div class="detail-technique-note" id="detail-technique-note">
               <strong>Kỹ thuật tiêu biểu:</strong> <span>Tạo hình từ khối bột màu, kỹ thuật ấn mào, khía lông cánh bằng lược và uốn cong lông đuôi.</span>
+            </div>
+
+            <!-- FIELDWORK ETHNOGRAPHIC NOTE -->
+            <div class="detail-fieldwork-note" id="detail-fieldwork-note">
+              <div class="fieldwork-note-header">
+                <span class="fieldwork-note-icon">🧭</span>
+                <span class="fieldwork-note-title">Ghi chép điền dã thực địa (Fieldwork Ethnography):</span>
+              </div>
+              <div class="fieldwork-note-body" id="detail-fieldwork-text">
+                Thu thập trực tiếp qua phỏng vấn sâu nghệ nhân làng Xuân La trong khuôn khổ nghiên cứu bảo tồn di sản văn hóa phi vật thể 2026.
+              </div>
             </div>
 
             <!-- CÁC THUẬT NGỮ LIÊN QUAN -->
@@ -375,6 +455,158 @@
         </div>
         <div class="terms-grid" id="terms-grid">
           <!-- Rendered via JS -->
+        </div>
+      </section>
+
+      <!-- INTERACTIVE HERITAGE KNOWLEDGE GRAPH SECTION -->
+      <section class="knowledge-graph-section" id="knowledge-graph-section" style="display: none;">
+        <div class="graph-section-header">
+          <div class="graph-title-wrap">
+            <span class="section-title-icon">🕸️</span>
+            <div class="graph-heading-group">
+              <h2 class="graph-main-title">Đồ thị Ngữ nghĩa Di sản (Heritage Knowledge Graph)</h2>
+              <p class="graph-subtitle">Mạng lưới trực quan hóa cấu trúc liên kết ngữ nghĩa giữa 177 thuật ngữ điền dã Tò he Xuân La</p>
+            </div>
+          </div>
+          <div class="graph-actions-wrap">
+            <button class="graph-control-btn" id="graph-reset-zoom-btn" title="Đặt lại góc nhìn">
+              <span>🎯</span> Đặt lại góc nhìn
+            </button>
+            <button class="graph-control-btn" id="graph-back-btn">
+              <span>←</span> Quay lại từ điển
+            </button>
+          </div>
+        </div>
+
+        <!-- GRAPH CONTROLS TOOLBAR -->
+        <div class="graph-toolbar">
+          <div class="graph-filter-chips" id="graph-category-chips">
+            <button class="graph-chip active" data-graph-cat="all">Tất cả (177)</button>
+            <button class="graph-chip" data-graph-cat="ky_thuat_nan">Kỹ thuật nặn (99)</button>
+            <button class="graph-chip" data-graph-cat="nguyen_lieu">Nguyên liệu (33)</button>
+            <button class="graph-chip" data-graph-cat="san_pham">Sản phẩm (29)</button>
+            <button class="graph-chip" data-graph-cat="dung_cu">Dụng cụ (16)</button>
+          </div>
+          <div class="graph-search-box">
+            <input type="text" id="graph-search-input" placeholder="Tìm nút thuật ngữ trên đồ thị..." autocomplete="off">
+          </div>
+        </div>
+
+        <!-- GRAPH CANVAS CONTAINER -->
+        <div class="graph-canvas-container" id="graph-canvas-container">
+          <canvas id="heritage-graph-canvas" class="heritage-graph-canvas"></canvas>
+          <div class="graph-tooltip" id="graph-tooltip" style="display: none;"></div>
+          <div class="graph-overlay-guide">
+            <span>💡 <strong>Hướng dẫn:</strong> Kéo thả các nút mạng • Cuộn chuột phóng to/thu nhỏ • Nhấp chuột vào nút để mở hồ sơ chi tiết</span>
+          </div>
+        </div>
+
+        <!-- GRAPH METRICS & LEGEND -->
+        <div class="graph-footer-bar">
+          <div class="graph-legend">
+            <span class="legend-item"><span class="legend-dot dot-kythuat"></span> Kỹ thuật nặn</span>
+            <span class="legend-item"><span class="legend-dot dot-nguyenlieu"></span> Nguyên liệu</span>
+            <span class="legend-item"><span class="legend-dot dot-sanpham"></span> Sản phẩm</span>
+            <span class="legend-item"><span class="legend-dot dot-dungcu"></span> Dụng cụ</span>
+          </div>
+          <div class="graph-stats-summary" id="graph-stats-summary">
+            177 Nút (Nodes) • Đang hiển thị kết nối ngữ nghĩa hai chiều
+          </div>
+        </div>
+      </section>
+
+      <!-- FIELDWORK SPATIAL GIS CARTOGRAPHY SECTION -->
+      <section class="fieldwork-map-section" id="fieldwork-map-section" style="display: none;">
+        <div class="map-section-header">
+          <div class="map-title-wrap">
+            <span class="section-title-icon">🗺️</span>
+            <div class="map-heading-group">
+              <h2 class="map-main-title">Bản đồ Không gian Điền dã Làng Xuân La</h2>
+              <p class="map-subtitle">Khảo sát địa văn hóa, tọa độ không gian và phân bố thực địa (20°46'32"B, 105°51'15"Đ)</p>
+            </div>
+          </div>
+          <button class="graph-control-btn" id="map-back-btn">
+            <span>←</span> Quay lại từ điển
+          </button>
+        </div>
+
+        <div class="spatial-map-layout">
+          <!-- Left: Interactive Vector Cartography Map -->
+          <div class="spatial-map-wrapper">
+            <svg class="village-cartography-svg" id="village-cartography-svg" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+              <!-- Background Terrain & Fields -->
+              <rect width="800" height="500" fill="#f4ede2" rx="16"/>
+              <!-- River Nhue Contour -->
+              <path d="M 0,160 C 200,140 320,240 500,200 C 650,170 720,280 800,260 L 800,310 C 720,330 650,220 500,250 C 320,290 200,190 0,210 Z" fill="#cbe4ed" opacity="0.8"/>
+              <text x="360" y="225" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" fill="#5b8296" font-style="italic">Lưu vực sông Nhuệ</text>
+
+              <!-- Village Road Network -->
+              <path d="M 120,40 C 220,120 380,180 440,290 C 480,360 560,450 620,490" fill="none" stroke="#d5c2a5" stroke-width="12" stroke-linecap="round"/>
+              <path d="M 440,290 C 330,340 240,380 140,430" fill="none" stroke="#d5c2a5" stroke-width="8" stroke-linecap="round"/>
+              <path d="M 280,140 C 450,110 590,90 700,80" fill="none" stroke="#d5c2a5" stroke-width="8" stroke-linecap="round"/>
+              
+              <!-- Village Settlement Zones -->
+              <circle cx="430" cy="285" r="95" fill="#f8e8d8" stroke="#e0c29f" stroke-dasharray="4 4" opacity="0.9"/>
+              <text x="380" y="360" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="#a47148">KHU DÂN CƯ XUÂN LA</text>
+
+              <!-- Interactive Landmark Pins -->
+              <!-- Pin 1: Đình làng Xuân La -->
+              <g class="map-landmark-pin active" id="pin-dinh-lang" data-pin="dinh_lang" transform="translate(420, 260)">
+                <circle cx="0" cy="0" r="16" fill="#C24A35" opacity="0.2" class="pin-pulse"/>
+                <circle cx="0" cy="0" r="10" fill="#C24A35" stroke="#fff" stroke-width="2"/>
+                <text x="0" y="4" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">🏛️</text>
+                <text x="14" y="4" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700" fill="#4A3B32">Đình Làng Xuân La</text>
+              </g>
+
+              <!-- Pin 2: Không gian Trưng bày Tò he -->
+              <g class="map-landmark-pin" id="pin-khong-gian" data-pin="khong_gian" transform="translate(480, 220)">
+                <circle cx="0" cy="0" r="16" fill="#2E7D32" opacity="0.2" class="pin-pulse"/>
+                <circle cx="0" cy="0" r="10" fill="#2E7D32" stroke="#fff" stroke-width="2"/>
+                <text x="0" y="4" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">🎨</text>
+                <text x="14" y="4" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700" fill="#4A3B32">Nhà Trưng bày Di sản</text>
+              </g>
+
+              <!-- Pin 3: Vùng Nếp Phượng Dực -->
+              <g class="map-landmark-pin" id="pin-nguyen-lieu" data-pin="nguyen_lieu" transform="translate(260, 360)">
+                <circle cx="0" cy="0" r="16" fill="#F57C00" opacity="0.2" class="pin-pulse"/>
+                <circle cx="0" cy="0" r="10" fill="#F57C00" stroke="#fff" stroke-width="2"/>
+                <text x="0" y="4" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">🌾</text>
+                <text x="14" y="4" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700" fill="#4A3B32">Vùng Lúa Nếp Cái Hoa Vàng</text>
+              </g>
+
+              <!-- Pin 4: Bến sông lấy nước luộc bột truyền thống -->
+              <g class="map-landmark-pin" id="pin-song-nhue" data-pin="song_nhue" transform="translate(560, 180)">
+                <circle cx="0" cy="0" r="16" fill="#1976D2" opacity="0.2" class="pin-pulse"/>
+                <circle cx="0" cy="0" r="10" fill="#1976D2" stroke="#fff" stroke-width="2"/>
+                <text x="0" y="4" text-anchor="middle" font-size="10" fill="#fff" font-weight="bold">💧</text>
+                <text x="14" y="4" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700" fill="#4A3B32">Bến Cổ Làng Nghề</text>
+              </g>
+            </svg>
+            <div class="map-overlay-coordinates">
+              📍 Tọa độ GPS: 20°46'32" N, 105°51'15" E • Độ cao: 4.8m so với mực nước biển
+            </div>
+          </div>
+
+          <!-- Right: Landmark & Ethnographic Context Information -->
+          <div class="spatial-info-panel">
+            <div class="spatial-badge" id="spatial-badge">Di tích Lịch sử - Tín ngưỡng</div>
+            <h3 class="spatial-title" id="spatial-title">Đình Làng Xuân La</h3>
+            <div class="spatial-coords" id="spatial-coords">Tọa độ: 20.7756° N, 105.8542° E</div>
+            <div class="spatial-content" id="spatial-content">
+              Nơi thờ các vị Thành hoàng làng và tổ nghề nặn tò he truyền thống. Hàng năm vào ngày rằm tháng Giêng âm lịch, làng tổ chức hội thi nặn tò he để các nghệ nhân tranh tài, nặn các con giống chim cò dâng lễ cửa đình.
+            </div>
+            <div class="spatial-methodology">
+              <strong>Phương pháp nghiên cứu:</strong> Phỏng vấn hồi cố dân tộc học (Oral History) & Ghi chép nhật ký điền dã thực địa tại làng Xuân La, xã Phượng Dực, huyện Phú Xuyên, Hà Nội.
+            </div>
+            <div class="spatial-related-terms">
+              <strong>Thuật ngữ liên quan:</strong>
+              <div class="spatial-terms-tags" id="spatial-terms-tags">
+                <button class="related-tag-chip" data-id="to-he">tò he</button>
+                <button class="related-tag-chip" data-id="chim-co">chim cò</button>
+                <button class="related-tag-chip" data-id="mam-le">mâm lễ</button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -454,6 +686,63 @@
       </div>
       <div class="modal-footer">
         <button class="primary-btn" id="modal-explore-btn">Khám phá từ điển ngay</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACADEMIC CITATION & OPEN SCIENCE DATA EXPORT MODAL -->
+  <div class="modal-backdrop" id="citation-modal" style="display: none;">
+    <div class="modal-dialog modal-citation-dialog">
+      <button class="modal-close-btn" id="citation-modal-close-btn">✕</button>
+      <div class="modal-header">
+        <span class="modal-badge">Open Science & Academic Citation</span>
+        <h2 class="modal-title" id="citation-modal-title">Trích dẫn & Dữ liệu Nghiên cứu</h2>
+      </div>
+      <div class="modal-body">
+        <p class="citation-intro">
+          Toàn bộ 177 thuật ngữ điền dã làng nghề Tò he Xuân La được công bố theo tinh thần Khoa học Mở (Open Science). Vui lòng trích dẫn nguồn dữ liệu này trong các công trình nghiên cứu, luận văn hoặc bài báo khoa học theo các chuẩn dưới đây:
+        </p>
+
+        <!-- CITATION FORMAT TABS -->
+        <div class="citation-tabs-nav" role="tablist">
+          <button class="citation-tab-btn active" data-cite-format="apa">APA 7th</button>
+          <button class="citation-tab-btn" data-cite-format="mla">MLA 9th</button>
+          <button class="citation-tab-btn" data-cite-format="chicago">Chicago 17th</button>
+          <button class="citation-tab-btn" data-cite-format="bibtex">BibTeX</button>
+        </div>
+
+        <!-- CITATION DISPLAY BOX -->
+        <div class="citation-code-box">
+          <pre><code id="citation-output-text">Đang tạo trích dẫn...</code></pre>
+          <button class="copy-citation-btn" id="copy-citation-btn">📋 Sao chép trích dẫn</button>
+        </div>
+
+        <!-- OPEN SCIENCE DATA DOWNLOAD SECTION -->
+        <div class="open-data-export-box">
+          <div class="open-data-header">
+            <span class="export-icon">💾</span>
+            <h4 class="export-heading">Tải về Bộ Dữ liệu Điền dã (Open Heritage Dataset):</h4>
+          </div>
+          <p class="export-desc">
+            Cung cấp đầy đủ 177 thực thể thuật ngữ song ngữ, phiên âm IPA, giải nghĩa, chuyên mục và đồ thị liên kết ngữ nghĩa:
+          </p>
+          <div class="export-buttons-row">
+            <button class="export-file-btn" id="export-jsonld-btn">
+              <span class="file-icon">📄</span>
+              <div class="file-info">
+                <span class="file-name">tohe_heritage_dataset.jsonld</span>
+                <span class="file-meta">Chuẩn Schema.org DefinedTermSet • JSON-LD</span>
+              </div>
+            </button>
+            <button class="export-file-btn" id="export-csv-btn">
+              <span class="file-icon">📊</span>
+              <div class="file-info">
+                <span class="file-name">tohe_fieldwork_177_terms.csv</span>
+                <span class="file-meta">Bảng tổng hợp 13 trường dữ liệu • UTF-8 CSV</span>
+              </div>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

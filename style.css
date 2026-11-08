@@ -1947,3 +1947,752 @@ a {
     transform: translateY(0);
   }
 }
+
+/* ==========================================================================
+   ACADEMIC EXTENSIONS: 3D CRAFT MORPHOLOGY, KNOWLEDGE GRAPH, GIS & CITATION
+   ========================================================================== */
+
+/* 1. Academic Action Buttons & Fieldwork Note */
+.academic-actions-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 12px 0 16px 0;
+}
+
+.academic-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-surface-soft);
+  color: var(--color-text-main);
+  border: 1px solid var(--color-border);
+  padding: 7px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.academic-action-btn:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.detail-fieldwork-note {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-left: 3px solid #f59e0b;
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  margin: 10px 0;
+}
+
+.fieldwork-note-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #b45309;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 4px;
+}
+
+.fieldwork-note-body {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--color-text-main);
+}
+
+/* 2. Interactive 3D Craft Morphology Container */
+.detail-3d-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.model-viewport-wrap {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  background: radial-gradient(circle at 50% 50%, #2a2d34 0%, #17181c 100%);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.morphology-3d-canvas {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  display: block;
+}
+
+.morphology-3d-canvas:active {
+  cursor: grabbing;
+}
+
+.model-canvas-hint {
+  position: absolute;
+  bottom: 10px;
+  font-size: 0.74rem;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  color: #f3f4f6;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  pointer-events: none;
+  letter-spacing: 0.02em;
+}
+
+.morphology-stage-controls {
+  background: var(--bg-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.morphology-stage-controls .stage-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--color-text-muted);
+}
+
+.morphology-stage-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.stage-btn {
+  flex: 1;
+  min-width: 90px;
+  background: var(--bg-surface);
+  color: var(--color-text-main);
+  border: 1px solid var(--color-border);
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.stage-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.stage-btn.active {
+  background: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+}
+
+.stage-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--color-border);
+}
+
+.wireframe-toggle-label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--color-text-main);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.webar-launch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: #ffffff;
+  border: none;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(124, 58, 237, 0.3);
+  transition: all 0.2s ease;
+}
+
+.webar-launch-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(124, 58, 237, 0.4);
+}
+
+/* 3. Knowledge Graph Section */
+.knowledge-graph-section {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.graph-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.graph-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.graph-main-title {
+  font-size: 1.32rem;
+  font-weight: 800;
+  color: var(--color-text-main);
+  margin: 0;
+}
+
+.graph-subtitle {
+  font-size: 0.86rem;
+  color: var(--color-text-muted);
+  margin: 4px 0 0 0;
+}
+
+.graph-actions-wrap {
+  display: flex;
+  gap: 8px;
+}
+
+.graph-control-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-surface-soft);
+  color: var(--color-text-main);
+  border: 1px solid var(--color-border);
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.graph-control-btn:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.graph-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.graph-filter-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.graph-chip {
+  background: var(--bg-surface-soft);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.graph-chip:hover {
+  color: var(--color-text-main);
+  border-color: var(--color-primary);
+}
+
+.graph-chip.active {
+  background: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+}
+
+.graph-search-box input {
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  background: var(--bg-surface-soft);
+  color: var(--color-text-main);
+  font-size: 0.84rem;
+  width: 240px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.graph-search-box input:focus {
+  border-color: var(--color-primary);
+}
+
+.graph-canvas-container {
+  position: relative;
+  width: 100%;
+  height: 540px;
+  background: var(--bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.heritage-graph-canvas {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  display: block;
+}
+
+.heritage-graph-canvas:active {
+  cursor: grabbing;
+}
+
+.graph-tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: rgba(24, 24, 27, 0.94);
+  backdrop-filter: blur(6px);
+  color: #f4f4f5;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 20;
+  max-width: 240px;
+  transform: translate(-50%, -120%);
+  transition: opacity 0.15s ease;
+}
+
+.graph-overlay-guide {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  color: #374151;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  pointer-events: none;
+}
+
+[data-theme="dark"] .graph-overlay-guide {
+  background: rgba(24, 24, 27, 0.85);
+  color: #d1d5db;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.graph-footer-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--color-border);
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+.graph-legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-kythuat { background: #C24A35; }
+.dot-nguyenlieu { background: #E89234; }
+.dot-sanpham { background: #2E7D32; }
+.dot-dungcu { background: #8E44AD; }
+
+/* 4. Spatial GIS Cartography Section */
+.fieldwork-map-section {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.map-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.map-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.map-main-title {
+  font-size: 1.32rem;
+  font-weight: 800;
+  color: var(--color-text-main);
+  margin: 0;
+}
+
+.map-subtitle {
+  font-size: 0.86rem;
+  color: var(--color-text-muted);
+  margin: 4px 0 0 0;
+}
+
+.spatial-map-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 20px;
+  align-items: stretch;
+}
+
+@media (max-width: 992px) {
+  .spatial-map-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.spatial-map-wrapper {
+  position: relative;
+  background: #f4ede2;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.village-cartography-svg {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  display: block;
+}
+
+.map-landmark-pin {
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.map-landmark-pin:hover,
+.map-landmark-pin.active {
+  transform: scale(1.18);
+}
+
+.pin-pulse {
+  animation: pinPulseAnimation 2s infinite ease-out;
+  transform-origin: center;
+}
+
+@keyframes pinPulseAnimation {
+  0% { r: 10px; opacity: 0.6; }
+  50% { r: 24px; opacity: 0.1; }
+  100% { r: 10px; opacity: 0; }
+}
+
+.map-overlay-coordinates {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.74rem;
+  font-family: monospace;
+  color: #374151;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.spatial-info-panel {
+  background: var(--bg-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.spatial-badge {
+  display: inline-block;
+  align-self: flex-start;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border: 1px solid rgba(194, 65, 12, 0.2);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.spatial-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-text-main);
+  margin: 0;
+}
+
+.spatial-coords {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  font-family: monospace;
+}
+
+.spatial-content {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--color-text-main);
+}
+
+.spatial-methodology {
+  background: var(--bg-surface);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid #10b981;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.spatial-related-terms {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.84rem;
+  color: var(--color-text-muted);
+}
+
+.spatial-terms-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* 5. Academic Citation & Open Data Modal */
+.modal-citation-dialog {
+  max-width: 680px;
+}
+
+.citation-intro {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+}
+
+.citation-tabs-nav {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 8px;
+}
+
+.citation-tab-btn {
+  background: var(--bg-surface-soft);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  padding: 6px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.citation-tab-btn:hover {
+  color: var(--color-text-main);
+  border-color: var(--color-primary);
+}
+
+.citation-tab-btn.active {
+  background: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+}
+
+.citation-code-box {
+  background: var(--bg-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.citation-code-box pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--color-text-main);
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.copy-citation-btn {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.copy-citation-btn:hover {
+  opacity: 0.9;
+}
+
+.open-data-export-box {
+  border-top: 1px dashed var(--color-border);
+  padding-top: 16px;
+}
+
+.open-data-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.export-heading {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin: 0;
+}
+
+.export-desc {
+  font-size: 0.86rem;
+  color: var(--color-text-muted);
+  margin: 0 0 12px 0;
+}
+
+.export-buttons-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 640px) {
+  .export-buttons-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.export-file-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.export-file-btn:hover {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.export-file-btn .file-icon {
+  font-size: 1.5rem;
+}
+
+.export-file-btn .file-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.export-file-btn .file-name {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+}
+
+.export-file-btn .file-meta {
+  font-size: 0.74rem;
+  color: var(--color-text-muted);
+}
+

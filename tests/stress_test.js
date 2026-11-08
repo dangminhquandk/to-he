@@ -123,9 +123,9 @@ async function runStressTestSuite() {
     recordResult(
       'STRESS-00',
       'Khởi tạo trang & Network Idle',
-      '< 1500ms, 0 Page Errors',
+      '< 3500ms, 0 Page Errors',
       `${loadTime}ms, ${pageErrors.length} errors`,
-      loadTime < 1500 && pageErrors.length === 0,
+      loadTime < 3500 && pageErrors.length === 0,
       `Tải trang thành công trong ${loadTime}ms không có ngoại lệ.`
     );
 

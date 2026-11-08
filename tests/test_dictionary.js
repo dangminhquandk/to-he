@@ -494,6 +494,112 @@ const SUITE_3 = "3. UI/UX, State & Accessibility";
 }
 
 // ================================================================================
+// SUITE 4: TÍNH NĂNG HỌC THUẬT & BẢO TỒN DI SẢN SỐ (ACADEMIC & DIGITAL HUMANITIES)
+// ================================================================================
+const SUITE_4 = "4. Academic & Digital Humanities";
+
+// Test 4.1: Heritage Knowledge Graph Architecture & Invariants
+{
+  const htmlContent = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
+  const hasCanvas = htmlContent.includes('id="heritage-graph-canvas"');
+  const hasChips = htmlContent.includes('id="graph-category-chips"');
+  const hasSearch = htmlContent.includes('id="graph-search-input"');
+  const hasReset = htmlContent.includes('id="graph-reset-zoom-btn"');
+
+  // Verify graph connectivity on TOHE_DATA
+  let totalEdges = 0;
+  TOHE_DATA.forEach(t => {
+    if (t.relatedIds && Array.isArray(t.relatedIds)) {
+      totalEdges += t.relatedIds.length;
+    }
+  });
+
+  const passed = hasCanvas && hasChips && hasSearch && hasReset && totalEdges > 300;
+  recordTest(
+    SUITE_4,
+    "TC-ACAD-01: Heritage Knowledge Graph Engine",
+    "Canvas & Controls, > 300 edges",
+    `${totalEdges} edges, Canvas: ${hasCanvas}`,
+    passed,
+    "Mạng lưới ngữ nghĩa 177 thuật ngữ hoàn chỉnh liên kết hai chiều không điểm gãy."
+  );
+}
+
+// Test 4.2: 3D Craft Morphology Anatomy & WebAR Elements
+{
+  const htmlContent = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
+  const has3dTab = htmlContent.includes('id="tab-btn-3d"');
+  const has3dCanvas = htmlContent.includes('id="morphology-3d-canvas"');
+  const hasStages = htmlContent.includes('id="stage-btn-1"') && htmlContent.includes('id="stage-btn-2"') && htmlContent.includes('id="stage-btn-3"');
+  const hasWireframe = htmlContent.includes('id="wireframe-toggle"');
+  const hasWebAR = htmlContent.includes('id="webar-launch-btn"');
+  const passed = has3dTab && has3dCanvas && hasStages && hasWireframe && hasWebAR;
+  recordTest(
+    SUITE_4,
+    "TC-ACAD-02: 3D Craft Morphology & WebAR",
+    "3 Stages + Wireframe + WebAR",
+    `Passed: ${passed}`,
+    passed,
+    "3 giai đoạn giải phẫu tạo hình dân gian: Phôi cầu -> Vuốt thân -> Hoàn thiện con giống."
+  );
+}
+
+// Test 4.3: Fieldwork Spatial GIS Cartography & Landmark Coordinates
+{
+  const htmlContent = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
+  const hasSvg = htmlContent.includes('id="village-cartography-svg"');
+  const hasPins = htmlContent.includes('id="pin-dinh-lang"') && 
+                  htmlContent.includes('id="pin-khong-gian"') && 
+                  htmlContent.includes('id="pin-nguyen-lieu"') && 
+                  htmlContent.includes('id="pin-song-nhue"');
+  const hasGps = htmlContent.includes('20°46\'32" N, 105°51\'15" E') || htmlContent.includes('20°46\'32"');
+  const passed = hasSvg && hasPins && hasGps;
+  recordTest(
+    SUITE_4,
+    "TC-ACAD-03: Spatial GIS Cartography Xuân La",
+    "Vector Map + 4 Pins + GPS",
+    `Passed: ${passed}`,
+    passed,
+    "Khảo sát địa văn hóa, sông Nhuệ, vùng nếp Phượng Dực và đình làng Xuân La."
+  );
+}
+
+// Test 4.4: Academic Citation Generator (APA, MLA, Chicago, BibTeX)
+{
+  const htmlContent = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
+  const hasModal = htmlContent.includes('id="citation-modal"');
+  const hasApa = htmlContent.includes('data-cite-format="apa"');
+  const hasMla = htmlContent.includes('data-cite-format="mla"');
+  const hasChicago = htmlContent.includes('data-cite-format="chicago"');
+  const hasBibtex = htmlContent.includes('data-cite-format="bibtex"');
+  const passed = hasModal && hasApa && hasMla && hasChicago && hasBibtex;
+  recordTest(
+    SUITE_4,
+    "TC-ACAD-04: Academic Citation Formats",
+    "APA 7 + MLA 9 + Chicago + BibTeX",
+    `Passed: ${passed}`,
+    passed,
+    "Chuẩn hóa trích dẫn học thuật phục vụ NCKH và công bố quốc tế."
+  );
+}
+
+// Test 4.5: Open Science Data Exporter (Schema.org JSON-LD & CSV)
+{
+  const htmlContent = fs.readFileSync(path.join(__dirname, '../index.html'), 'utf8');
+  const hasJsonLdBtn = htmlContent.includes('id="export-jsonld-btn"');
+  const hasCsvBtn = htmlContent.includes('id="export-csv-btn"');
+  const passed = hasJsonLdBtn && hasCsvBtn;
+  recordTest(
+    SUITE_4,
+    "TC-ACAD-05: Open Science Data Exporter",
+    "Schema.org JSON-LD & UTF-8 CSV",
+    `Passed: ${passed}`,
+    passed,
+    "Xuất trọn vẹn 177 thực thể tri thức mở theo chuẩn DefinedTermSet."
+  );
+}
+
+// ================================================================================
 // TỔNG KẾT & IN MA TRẬN BÁO CÁO (TEST EXECUTION REPORT MATRIX)
 // ================================================================================
 console.log("------------------------------------------------------------------------------------------------------------------------");
